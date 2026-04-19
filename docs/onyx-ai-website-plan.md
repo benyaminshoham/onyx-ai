@@ -1,15 +1,13 @@
 # Onyx AI — Website Plan
-**Version 2.0 · 2026**
+**Version 3.0 · 2026**
 
 ---
 
 ## Strategic Overview
 
-The site is organized around three user audiences — not service types. Each audience has a dedicated hub page presenting the services most relevant to them. The homepage establishes who Benyamin is and immediately routes each visitor to their path.
+The site routes three distinct audiences — developers, business owners, and companies/organizations — each to a dedicated hub page that presents all relevant services and recorded courses in one place. The homepage establishes credibility and routes visitors. The blog drives SEO.
 
-"Group activities" — workshops and monthly group programs — are referred to as **סדנאות** and **תהליכים**, never "courses" or "קורסים".
-
-The **main site** (homepage, audience hubs, services, blog, resources) is built for SEO, credibility, and organic traffic. **Landing pages** (`/lp/*`) are isolated conversion pages for paid and social campaigns — no nav, one CTA, one offer.
+"Group activities" — workshops and monthly group programs — are referred to as **סדנאות** and **תהליכים**, never "courses" or "קורסים". Recorded video lessons sold online are referred to as **קורסים מוקלטים**.
 
 ---
 
@@ -25,7 +23,7 @@ The **main site** (homepage, audience hubs, services, blog, resources) is built 
 
 ## Services Overview
 
-All ten services are organized into three formats:
+All ten services are organized into three formats.
 
 ### תהליכים קבוצתיים (Group Programs)
 
@@ -54,11 +52,25 @@ All ten services are organized into three formats:
 
 ---
 
+## Recorded Courses (קורסים מוקלטים)
+
+Recorded video lessons sold online. Displayed on audience pages using the **recorded-card** component. Each recording belongs to one or more audience segments and is shown only on the relevant audience page(s).
+
+| Course | Audience | Price |
+|---|---|---|
+| Claude API למפתחים | Developers | ₪890 |
+| Cursor — לפתח עם AI | Developers | ₪490 |
+| AI לעסקים — מ-0 לאוטומציה | Business owners | ₪690 |
+
+Additional recordings added post-launch.
+
+---
+
 ## Site Map
 
 ### 1. Homepage — `/`
 
-**Purpose:** Universal entry. Establish credibility, present all services, and route each visitor to their audience path.
+**Purpose:** Universal entry. Establish credibility, present all offerings, and route each visitor to their audience path.
 
 **Sections:**
 
@@ -66,29 +78,30 @@ All ten services are organized into three formats:
 2. **Audience fork** — Three path cards: מפתחים · בעלי עסקים · חברות וארגונים
 3. **What Benyamin does** — Four pillars: Building / Teaching / Automating / Consulting
 4. **Social proof** — Numbers + 2 testimonials
-5. **Group programs** — 4 cards (the 4 group תהליכים), organized by audience
-6. **Personal work** — 3 cards (ליווי · ייעוץ · פיתוח)
-7. **Organizational services** — 3 cards (הטמעה עסקית · הטמעה טכנולוגית · תשתית AI)
-8. **Featured program** — Spotlight on the current open group program
-8. **Free resources teaser** — 3 cards
-9. **Newsletter opt-in** — Single field, specific hook
-10. **About teaser** — Photo, 2-line bio, link to full About
-11. **Footer**
+5. **Featured offerings** — 3 featured cards (mix of recordings and programs)
+6. **Featured program** — Spotlight on the current open group program
+7. **Free resources teaser** — 3 cards
+8. **Newsletter opt-in** — Single field, specific hook
+9. **About teaser** — Photo, 2-line bio, link to full About
+10. **Footer**
 
 ---
 
 ### 2. Developers Hub — `/developers`
 
-**Purpose:** Central destination for all developer-facing services. Where a developer lands after clicking through from a social post, ad, or the homepage fork.
+**Purpose:** Single destination for all developer-facing services and recordings. Where a developer lands after clicking from the homepage fork, a social post, or an ad.
 
 **Sections:**
-- Hero — developer-specific headline and positioning
-- Their journey — the progression: התנעה → האצה → ליווי
-- Group programs — התנעה למפתחים + האצה למפתחים cards with full detail
-- Personal services — ייעוץ + ליווי + פיתוח cards
-- Proof — developer-specific testimonials or results
-- FAQ — format, prerequisites, tools used (Cursor, Claude API, MCP)
-- CTA — book a call or join the next group
+
+1. Hero — developer-specific headline and positioning
+2. Journey — the progression: התנעה → האצה → ליווי
+3. Group programs — התנעה למפתחים + האצה למפתחים (service-card)
+4. Personal services — ליווי · ייעוץ · פיתוח (service-card)
+5. Organizational — הטמעה טכנולוגית (service-card)
+6. Recorded courses — developer recordings (recorded-card)
+7. Testimonials — developer-specific
+8. FAQ — tools used (Cursor, Claude API, MCP), prerequisites, format
+9. CTA — book a call or join the next group
 
 **SEO targets:** "קורס AI למפתחים", "Cursor סדנה", "Claude API ישראל", "AI assisted development"
 
@@ -96,16 +109,19 @@ All ten services are organized into three formats:
 
 ### 3. Business Owners Hub — `/business`
 
-**Purpose:** Central destination for all business-facing services.
+**Purpose:** Single destination for all business-facing services and recordings.
 
 **Sections:**
-- Hero — business-owner-specific headline and positioning
-- Their journey — התנעה → האצה → ליווי progression
-- Group programs — התנעה לעסקים + האצה לעסקים cards with full detail
-- Personal services — ייעוץ + ליווי cards (פיתוח if applicable)
-- Proof — business-owner testimonials
-- FAQ — no technical background needed, what tools are used, ROI expectations
-- CTA — join next workshop or book consultation
+
+1. Hero — business-owner-specific headline and positioning
+2. Journey — התנעה → האצה → ליווי progression
+3. Group programs — התנעה לעסקים + האצה לעסקים (service-card)
+4. Personal services — ליווי · ייעוץ (service-card)
+5. Organizational — הטמעה עסקית (service-card)
+6. Recorded courses — business recordings (recorded-card)
+7. Testimonials — business-owner specific
+8. FAQ — no technical background needed, what tools are used, ROI expectations
+9. CTA — join next workshop or book consultation
 
 **SEO targets:** "AI לעסקים קטנים", "אוטומציה עסקית", "ייעוץ AI ישראל", "ChatGPT לעסקים"
 
@@ -113,69 +129,44 @@ All ten services are organized into three formats:
 
 ### 4. Companies & Organizations — `/organizations`
 
-**Purpose:** Larger teams and companies looking for structured AI adoption — team workshops, strategic consulting, and custom development.
+**Purpose:** Larger teams and companies looking for structured AI adoption.
 
 **Sections:**
-- Hero — organizational framing: rolling out AI across a team, not just one person
-- What we build together — three paths: סדנה לצוות · ייעוץ אסטרטגי · פיתוח מותאם
-- Organizational services — הטמעה עסקית · הטמעה טכנולוגית · תשתית AI as primary offerings
-- Supporting services — ייעוץ + ליווי + פיתוח presented with organizational scope
-- Proof — results or case studies from company-level work
-- Process — how an engagement works from first call to delivery
-- CTA — "ספרו לי על הצוות שלכם" — discovery call
+
+1. Hero — organizational framing: rolling out AI across a team
+2. Organizational services — הטמעה עסקית · הטמעה טכנולוגית · תשתית AI (service-card, primary)
+3. Supporting services — ייעוץ · ליווי · פיתוח with organizational scope (service-card)
+4. Recorded courses — any org-relevant recordings (recorded-card)
+5. Proof — results or case studies from company-level work
+6. Process — how an engagement works from first call to delivery
+7. FAQ — team size, timeline, what's included
+8. CTA — "ספרו לי על הצוות שלכם" — discovery call
 
 **SEO targets:** "הטמעת AI בארגון", "AI לצוותים", "ייעוץ AI לחברות", "סדנת AI לצוות"
 
 ---
 
-### 5. Services Index — `/services`
+### 5. About — `/about`
 
-**Purpose:** SEO-friendly overview of all seven services. Not a sales page — a clear index that helps visitors understand the full offering and choose their path.
+**Purpose:** Trust and authority. Where all audiences come to decide if Benyamin is credible.
 
 **Sections:**
-- Short intro — "כל הדרכים לעבוד יחד"
-- Group programs grid — 4 cards with audience tags, format, and links
-- Personal work grid — 3 cards with audience tags, format, and links
-- Audience filter — toggle to filter by מפתחים / עסקים / ארגונים / הכל
 
-**Individual service pages:** `/services/[slug]`
-
-| Service | URL |
-|---|---|
-| התנעה לעסקים | `/services/hatanaa-business` |
-| התנעה למפתחים | `/services/hatanaa-developers` |
-| האצה לעסקים | `/services/haatza-business` |
-| האצה למפתחים | `/services/haatza-developers` |
-| ליווי | `/services/livui` |
-| ייעוץ | `/services/yaauts` |
-| פיתוח | `/services/pitua` |
-| הטמעה עסקית | `/services/hatmaa-business` |
-| הטמעה טכנולוגית | `/services/hatmaa-tech` |
-| תשתית AI | `/services/ai-infrastructure` |
-
-Each service page is a full sales page (see Landing Page structure) but with the main site nav intact.
+1. Personal story — developer background, teaching history, why AI, why now
+2. Experience and credentials — 15+ years, 500+ trained, 50+ businesses
+3. What he believes about AI adoption in Israel
+4. Audience path overview — three cards linking to `/developers`, `/business`, `/organizations`
+5. CTA — book a call / reach out / follow on LinkedIn
 
 ---
 
-### 6. About — `/about`
-
-**Purpose:** Trust and authority. Where both audiences come to decide if Benyamin is credible.
-
-**Sections:**
-- Personal story — developer background, teaching history, why AI, why now
-- Experience and credentials — 15+ years, 500+ trained, 50+ businesses
-- What he believes about AI adoption in Israel
-- All services overview — brief cards linking to relevant pages
-- CTA — book a call / reach out / follow on LinkedIn
-
----
-
-### 7. Blog — `/blog`
+### 6. Blog — `/blog`
 
 **Purpose:** Primary SEO engine. Long-form Hebrew content targeting both audience segments.
 
 **Post pages:** `/blog/[post-slug]`
-Every post ends with a contextual CTA — a relevant service page or newsletter opt-in. Never a generic footer CTA.
+
+Every post ends with a contextual CTA — a relevant audience page or newsletter opt-in. Never a generic footer CTA.
 
 **SEO content clusters:**
 
@@ -188,57 +179,12 @@ Every post ends with a contextual CTA — a relevant service page or newsletter 
 
 ---
 
-### 8. Resources — `/resources`
+### 7. Terms & Privacy
 
-**Purpose:** Free value hub. SEO-supporting and list-building.
+- `/terms` — Terms of use
+- `/privacy` — Privacy policy
 
-**Resource types:**
-- Articles with takeaways
-- Downloadable templates and prompt packs
-- Lead magnets (gated with email opt-in)
-- Video walkthroughs
-
-**Lead magnet pages:** `/resources/[magnet-slug]` — dedicated opt-in pages for social promotion.
-
----
-
-### 9. Landing Pages — `/lp/[slug]`
-
-**Purpose:** Paid ads and social campaign destinations. No main nav, single CTA, minimal footer (logo + legal only).
-
-**Standard section structure:**
-
-1. Hero — outcome headline, subheading, CTA above fold
-2. Problem — what's hard right now
-3. Solution — what this offering gives them
-4. What's included — visual breakdown
-5. Who it's for (and who it's NOT for)
-6. Social proof — testimonials or results
-7. About Benyamin — 3-line credibility block
-8. FAQ — 3–5 targeted questions
-9. Final CTA — with urgency or scarcity
-10. Minimal footer
-
-**Landing pages planned at launch:**
-
-| Page | Audience | Offer |
-|---|---|---|
-| `/lp/hatanaa-business` | Business owners | התנעה לעסקים |
-| `/lp/hatanaa-dev` | Developers | התנעה למפתחים |
-| `/lp/haatza-business` | Business owners | האצה לעסקים |
-| `/lp/haatza-dev` | Developers | האצה למפתחים |
-| `/lp/livui` | All | ליווי אישי |
-| `/lp/hatmaa-business` | Companies | הטמעה עסקית |
-| `/lp/hatmaa-tech` | CTOs / dev managers | הטמעה טכנולוגית |
-| `/lp/ai-infrastructure` | Organizations | תשתית AI |
-
-Additional `/lp/*` pages created per campaign.
-
----
-
-### 10. Legal — `/privacy` and `/terms`
-
-Standard pages. Linked from all footers including landing page minimal footers.
+Standard pages. Linked from all footers.
 
 ---
 
@@ -249,13 +195,11 @@ Standard pages. Linked from all footers including landing page minimal footers.
 
 **Mobile nav:** Hamburger menu, same items, CTA pinned to bottom of drawer.
 
-**Landing pages (`/lp/*`):** Nav suppressed. Logo only. Minimal footer.
-
 **Footer (main site):**
 - Col 1: Logo + tagline + social links
-- Col 2: ניווט — Home · About · Blog · Resources
-- Col 3: לפי קהל — למפתחים · לעסקים · לארגונים · שירותים
-- Col 4: שירותים — 4 group programs + 3 personal services + 3 organizational services
+- Col 2: ניווט — Home · About · Blog
+- Col 3: לפי קהל — למפתחים · לעסקים · לארגונים
+- Col 4: שירותים — 4 group programs + 3 personal services + 3 org services (linked to audience pages)
 - Bottom bar: © Onyx AI · Privacy · Terms · contact
 
 ---
@@ -263,11 +207,10 @@ Standard pages. Linked from all footers including landing page minimal footers.
 ## SEO Architecture
 
 - Every page has a unique Hebrew `<title>` and `<meta description>`
-- Blog and Resources use structured article markup
+- Blog posts use structured article markup
 - Homepage targets: "בינה מלאכותית לעסקים", "AI למפתחים", "ייעוץ AI ישראל", "אוטומציה עסקית"
-- `/developers` and `/business` audience hubs target category-level keywords
-- Every post and resource links internally to at least one service page
-- `/lp/*` and lead magnet pages are `noindex`
+- `/developers`, `/business`, `/organizations` target category-level keywords
+- Every blog post links internally to at least one audience page
 
 ---
 
@@ -275,14 +218,13 @@ Standard pages. Linked from all footers including landing page minimal footers.
 
 | Type | Count |
 |---|---|
-| Static pages (Home, About, Developers, Business, Organizations, Services index, Resources, Blog index, Privacy, Terms) | 10 |
-| Individual service pages | 10 |
-| Landing pages | 8 |
-| Lead magnet opt-in pages | 1–2 |
-| **Total** | **~30 pages** |
+| Static pages (Home, About, Terms, Privacy) | 4 |
+| Audience hub pages (Developers, Business, Organizations) | 3 |
+| Blog index | 1 |
+| **Total** | **8** |
 
-Blog posts and resource cards added continuously post-launch.
+Blog posts added continuously post-launch.
 
 ---
 
-*Onyx AI · Website Plan · v2.0 · 2026*
+*Onyx AI · Website Plan · v3.0 · 2026*

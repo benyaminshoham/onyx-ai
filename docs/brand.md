@@ -206,7 +206,7 @@ Confident · Warm · Direct · Practical · Encouraging
 
 - Border-radius: 8px
 - Padding: 12px 24px
-- Font: Syne 600, 13px, letter-spacing +0.04em
+- Font: Exo 2 600, 13px, letter-spacing +0.04em
 - Include directional arrow `→` on primary CTAs
 
 ### Tags / Badges
@@ -232,7 +232,7 @@ Confident · Warm · Direct · Practical · Encouraging
 - Body: Heebo 300, 15px, `#C8BFB0`, 1.65 line-height
 
 ### Dividers
-- 0.5px solid `#2A2A3E`
+- 0.5px solid `#3D3528` (Border token)
 - Never use thicker dividers
 
 ### Section labels (numbered)
@@ -276,7 +276,7 @@ Confident · Warm · Direct · Practical · Encouraging
 - Easing: `cubic-bezier(0.16, 1, 0.3, 1)` — fast in, slow settle
 - Duration: 200ms (micro), 400ms (transition), 600ms (entrance)
 - Page entrances: staggered fade-up (`translateY(16px)` → `0`, opacity `0` → `1`)
-- Hover on cards: `transform: translateY(-2px)`, border brightens to `#3A3A5C`
+- Hover on cards: `transform: translateY(-2px)`, border brightens to `#4D4030` (warm)
 - No spinning loaders — use skeleton screens or pulse animations
 - Respect `prefers-reduced-motion`
 

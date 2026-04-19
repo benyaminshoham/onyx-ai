@@ -1,6 +1,6 @@
 # Onyx AI — WordPress Implementation Plan
 
-**Version 1.0 · 2026-04-17**
+**Version 2.0 · 2026-04-19**
 
 ---
 
@@ -9,10 +9,11 @@
 This document defines the complete WordPress implementation strategy for the Onyx AI website as specified in `onyx-ai-website-plan.md` and `brand.md`. The approach uses a fully custom block theme with a companion Gutenberg blocks plugin, so all content is authored natively in the block editor.
 
 **Tech decisions:**
-- **Theme type:** Block theme (FSE — Full Site Editing), not classic theme. Enables site editor control of headers, footers, and templates.
+- **Theme type:** Block theme (FSE — Full Site Editing). Enables site editor control of headers, footers, and templates.
 - **Block approach:** Custom plugin (`onyx-ai-blocks`) registers all brand-specific Gutenberg blocks. Theme provides layout, color, and typography tokens only.
 - **No page builder:** Elementor, Divi, etc. are explicitly excluded. Gutenberg only.
 - **No heavy plugin dependencies:** Avoid page-builder plugins, visual editors, or anything that locks content to a proprietary format.
+- **Content as database:** All page content is authored in the Gutenberg editor as block content stored in the WordPress database — not hardcoded in templates.
 
 ---
 
@@ -30,23 +31,20 @@ onyx-ai/
 │       │   ├── home.html
 │       │   ├── single.html
 │       │   ├── page.html
-│       │   ├── page-landing.html    # No-nav template for /lp/* pages
 │       │   ├── archive.html
 │       │   └── 404.html
 │       ├── parts/                   # Template parts
 │       │   ├── header.html
-│       │   ├── header-minimal.html  # Logo-only header for landing pages
-│       │   ├── footer.html
-│       │   └── footer-minimal.html  # Logo + legal only for landing pages
+│       │   └── footer.html
 │       └── patterns/                # Block patterns (reusable section blueprints)
 │           ├── hero-homepage.php
-│           ├── hero-landing.php
 │           ├── audience-fork.php
-│           ├── course-card-grid.php
 │           ├── service-card-grid.php
+│           ├── recorded-card-grid.php
 │           ├── testimonial-strip.php
 │           ├── newsletter-cta.php
-│           └── about-teaser.php
+│           ├── about-teaser.php
+│           └── faq-section.php
 │
 └── plugins/
     └── onyx-ai-blocks/              # Custom Gutenberg blocks plugin
@@ -58,20 +56,18 @@ onyx-ai/
         │   ├── audience-fork/
         │   ├── pillars/
         │   ├── proof-strip/
-        │   ├── course-card/
         │   ├── service-card/
-        │   ├── resource-card/
+        │   ├── recorded-card/
         │   ├── section-label/
         │   ├── tag-badge/
         │   ├── cta-button/
         │   ├── testimonial/
         │   ├── newsletter-optin/
         │   ├── about-teaser/
-        │   ├── faq-accordion/
-        │   └── landing-section/
+        │   └── faq-accordion/
         ├── build/                   # Compiled block assets
         ├── assets/
-        │   ├── fonts/               # Self-hosted Google Fonts (Syne, DM Sans, DM Mono, Heebo)
+        │   ├── fonts/               # Self-hosted Google Fonts (Exo 2, DM Sans, DM Mono, Heebo)
         │   └── icons/               # Lucide icon subset as SVG sprites
         └── package.json
 ```
@@ -82,63 +78,78 @@ onyx-ai/
 
 ### 1.1 `theme.json` — Design Tokens
 
-The entire brand design system from `brand.md` is encoded as `theme.json` tokens. This makes every color, font, and spacing value available in the block editor UI and enforces brand consistency globally.
+The entire brand design system from `brand.md` is encoded as `theme.json` tokens.
 
 **Colors to register:**
 
 | Slug | Hex | Name |
 |---|---|---|
-| `onyx` | `#0A0A0F` | Onyx |
-| `onyx-deep` | `#050508` | Onyx Deep |
-| `onyx-mid` | `#14141E` | Onyx Mid |
-| `surface` | `#1C1C2A` | Surface |
-| `border` | `#2A2A3E` | Border |
-| `electric` | `#5B5FFF` | Electric |
-| `electric-light` | `#7B7FFF` | Electric Light |
-| `electric-dim` | `#2A2D8A` | Electric Dim |
+| `charcoal` | `#1A1814` | Charcoal (primary background) |
+| `charcoal-deep` | `#0F0D0A` | Charcoal Deep |
+| `charcoal-mid` | `#252018` | Charcoal Mid |
+| `surface` | `#2E2820` | Surface |
+| `border` | `#3D3528` | Border |
+| `mustard` | `#C8922A` | Mustard (primary CTA accent) |
+| `mustard-light` | `#D4A84B` | Mustard Light |
+| `mustard-dim` | `#3D2E10` | Mustard Dim |
 | `teal` | `#00D4AA` | Teal |
 | `amber` | `#FFB74D` | Amber |
-| `white` | `#F0F2FF` | White |
-| `silver` | `#C8CCDD` | Silver |
-| `silver-muted` | `#6B6F8A` | Silver Muted |
+| `white` | `#F5F0E8` | White |
+| `silver` | `#C8BFB0` | Silver |
+| `silver-muted` | `#7A7060` | Silver Muted |
 
-**Font families to register:** Syne, DM Sans, DM Mono, Heebo (for Hebrew RTL content).
+**Font families to register:** Exo 2, DM Sans, DM Mono, Heebo (for Hebrew RTL content).
 
 **Spacing scale to register:** xs (8px), sm (12px), md (16px), lg (24px), xl (48px), 2xl (80px).
 
-**Typography presets:** Display, H1–H4, Subheading, Body, Body Strong, Caption/Label, Code, Tag/Badge — all mapped to Syne/DM Sans/DM Mono with exact weights, sizes, line-heights, and letter-spacing from `brand.md`.
+**Typography presets — mapped to brand spec:**
+
+| Style | Font | Weight | Size | Line-height | Tracking | Color |
+|---|---|---|---|---|---|---|
+| Display | Exo 2 | 800 | 42–64px | 1.0 | −0.03em | `#F5F0E8` |
+| H1 | Exo 2 | 800 | 36px | 1.1 | −0.02em | `#F5F0E8` |
+| H2 | Exo 2 | 700 | 28px | 1.15 | −0.015em | `#F5F0E8` |
+| H3 | Exo 2 | 700 | 22px | 1.2 | −0.01em | `#F5F0E8` |
+| H4 | Exo 2 | 500 | 18px | 1.3 | 0 | `#F5F0E8` |
+| Subheading | Exo 2 | 500 | 16px | 1.4 | 0 | `#C8BFB0` |
+| Body (Hebrew) | Heebo | 300 | 15–16px | 1.7 | 0 | `#C8BFB0` |
+| Body (English) | DM Sans | 300 | 15–16px | 1.7 | 0 | `#C8BFB0` |
+| Body strong | Heebo / DM Sans | 500 | 15–16px | 1.7 | 0 | `#F5F0E8` |
+| Caption / Label | DM Mono | 400 | 10px | 1.5 | +0.16em | `#7A7060` |
+| Code inline | DM Mono | 400 | 13px | 1.5 | +0.02em | `#00D4AA` |
+| Tag / Badge | DM Mono | 400 | 10px | 1 | +0.10em | varies |
 
 ### 1.2 Global Styles
 
-- Default background: `#0A0A0F` (dark mode throughout)
-- Default body text: Silver `#C8CCDD`, DM Sans 300
-- Default heading: White `#F0F2FF`, Syne
+- Default background: `#1A1814` (Charcoal — warm dark)
+- Default body text: Silver `#C8BFB0`, Heebo 300 (Hebrew) / DM Sans 300 (English)
+- Default heading: White `#F5F0E8`, Exo 2
 - Max content width: 1200px
 - Section padding: `clamp(48px, 8vw, 80px)` top/bottom
-- RTL support declared for Hebrew content (WordPress `is_rtl()` hook)
+- RTL support declared for Hebrew content (`is_rtl()` hook)
+- Noise texture overlay on dark backgrounds: fractal noise at 3–4% opacity
 
 ### 1.3 Font Loading
 
-Self-host Syne, DM Sans, DM Mono, and Heebo as WOFF2 files inside the plugin's `assets/fonts/` directory. Enqueue via `wp_enqueue_style()` in the plugin, not from Google Fonts CDN, for performance and privacy compliance.
+Self-host Exo 2, DM Sans, DM Mono, and Heebo as WOFF2 files inside the plugin's `assets/fonts/` directory. Enqueue via `wp_enqueue_style()` in the plugin, not from Google Fonts CDN, for performance and privacy compliance.
 
 ### 1.4 FSE Templates
 
 | Template | Used by |
 |---|---|
 | `home.html` | Homepage (static front page) |
-| `page.html` | About, Courses index, Services index, Resources, Blog index, Privacy, Terms |
-| `page-landing.html` | All `/lp/*` pages — no nav, minimal footer |
+| `page.html` | About, Developers, Business, Organizations, Blog index, Terms, Privacy |
 | `single.html` | Blog post pages |
-| `archive.html` | Category archive pages |
+| `archive.html` | Blog category archive pages |
 | `404.html` | 404 error page |
 
-The `page-landing.html` template uses `header-minimal.html` (logo only, not linked) and `footer-minimal.html` (logo + Privacy + Terms). Landing pages are assigned this template in the WordPress editor.
+All pages use the standard header and footer. There are no nav-suppressed templates.
 
 ---
 
 ## Phase 2 — Custom Gutenberg Blocks Plugin
 
-Each block is a standard `@wordpress/scripts`-compiled block with `block.json`, `edit.js` (editor UI), `save.js` (or `render.php` for dynamic blocks), and `style.scss`. Blocks use the InspectorControls panel for configuration options.
+Each block is a standard `@wordpress/scripts`-compiled block with `block.json`, `edit.js`, `save.js` (or `render.php` for dynamic blocks), and `style.scss`.
 
 ### Block Registry
 
@@ -146,18 +157,18 @@ Each block is a standard `@wordpress/scripts`-compiled block with `block.json`, 
 
 #### `onyx-ai/hero`
 
-**Used on:** Homepage, landing pages (via variant), individual course/service pages.
+**Used on:** Homepage, audience hub pages.
 
 **Attributes:**
-- `eyebrow` (string) — small section label above headline (e.g., `01 — AI לעסקים`)
-- `headline` (rich text) — display-size headline, supports inline color spans
-- `subheading` (string) — one-line subheading
-- `ctaPrimaryLabel` / `ctaPrimaryUrl` (string)
-- `ctaSecondaryLabel` / `ctaSecondaryUrl` (string)
-- `variant` — `homepage` (two CTAs, audience-fork style) | `landing` (single CTA) | `course` (with price badge)
-- `backgroundDecoration` — boolean, enables animated gradient orb background
+- `eyebrow` (string) — section label above headline (e.g., `01 — AI לעסקים`)
+- `headline` (rich text) — display-size headline, supports inline Mustard color spans
+- `subheading` (string)
+- `ctaPrimaryLabel` / `ctaPrimaryUrl`
+- `ctaSecondaryLabel` / `ctaSecondaryUrl`
+- `variant` — `homepage` | `audience` (audience hub variant, single CTA)
+- `backgroundDecoration` — boolean, enables animated warm gradient orb
 
-**Output:** Full-width section with centered or left-aligned content depending on variant.
+**Output:** Full-width section, centered or left-aligned depending on variant.
 
 ---
 
@@ -166,9 +177,9 @@ Each block is a standard `@wordpress/scripts`-compiled block with `block.json`, 
 **Used on:** Homepage section 2.
 
 **Attributes:**
-- Two fork cards, each with: `headline`, `description`, `linkLabel`, `linkUrl`, `audience` (`dev` | `biz`), `icon`
+- Three fork cards, each: `headline`, `description`, `linkLabel`, `linkUrl`, `audience` (`dev` | `biz` | `org`), `icon`
 
-**Output:** Two side-by-side cards on desktop (stacked on mobile), Electric border accent, developer path vs. business owner path.
+**Output:** Three side-by-side cards on desktop (stacked on mobile), Mustard border accent, one card per audience path.
 
 ---
 
@@ -180,58 +191,57 @@ Each block is a standard `@wordpress/scripts`-compiled block with `block.json`, 
 - Array of up to 6 pillar items, each: `icon` (Lucide slug), `label`, `description`
 - `columns` — 2 | 3 | 4
 
-**Output:** Icon grid with label and one-line description. Uses Teal for icon color.
+**Output:** Icon grid with label and one-line description. Teal for icon color.
 
 ---
 
 #### `onyx-ai/proof-strip`
 
-**Used on:** Homepage section 4.
+**Used on:** Homepage section 4, audience hub pages.
 
 **Attributes:**
 - Array of stat items: `number`, `label`
 - Array of quote items: `quote`, `author`, `role`
-- `logos` — boolean (show logo strip)
 
-**Output:** Three large number stats, horizontal divider, 2–3 quote callouts, optional logo strip.
-
----
-
-#### `onyx-ai/course-card`
-
-**Used on:** Courses index grid, Homepage featured courses, Landing pages.
-
-**Attributes:**
-- `title`, `audienceTag` (Electric | Teal), `description`, `price`, `ctaLabel`, `ctaUrl`, `coursePageId`
-- `featured` — boolean, adds highlighted border treatment
-
-**Output:** Card with eyebrow audience tag, title, description, price badge, CTA button.
-
-**Note:** Dynamic block — renders via `render.php` so course data can optionally be pulled from a Course custom post type (Phase 4 option).
+**Output:** Large number stats, divider, 2–3 quote callouts.
 
 ---
 
 #### `onyx-ai/service-card`
 
-**Used on:** Services index grid, About page offerings overview.
+**Used on:** All audience hub pages (group programs, personal services, organizational services).
 
 **Attributes:**
-- `icon`, `title`, `description`, `audienceTag`, `linkUrl`
+- `icon`, `title`, `description`, `audienceTag`
+- `serviceType` — `group` | `personal` | `organizational`
+- `format` (string) — e.g., `חצי יום · מפגש אחד`, `לפי שעה`
+- `nextDate` (string) — optional, shown on `group` type cards
+- `price` (string) — optional
+- `ctaLabel` / `ctaUrl`
+- `featured` — boolean
 
-**Output:** Card with icon, title, one-line description, audience tag badge, arrow link.
+**Output:** Card with icon, title, description, format badge, optional next-date and price, CTA button. `group` type cards show the next cohort date when set. `featured` adds highlighted Mustard border treatment.
 
 ---
 
-#### `onyx-ai/resource-card`
+#### `onyx-ai/recorded-card`
 
-**Used on:** Resources page grid, Homepage free resources teaser.
+**Used on:** Audience hub pages — "קורסים מוקלטים" section.
 
 **Attributes:**
-- `typeBadge` — `article` | `tool` | `template` | `video` | `download`
-- `title`, `description`, `ctaLabel`, `ctaUrl`
-- `gated` — boolean, replaces CTA with email opt-in trigger
+- `title` (string)
+- `audienceTag` — `dev` | `biz` | `org`
+- `description` (string) — 2–3 line description
+- `price` (string, e.g., `₪890`)
+- `duration` (string, e.g., `4 שעות`)
+- `moduleCount` (string, e.g., `12 שיעורים`)
+- `thumbnailUrl` / `thumbnailAlt`
+- `ctaLabel` / `ctaUrl`
+- `featured` — boolean
 
-**Output:** Card with type badge (color-coded per type), title, description, CTA.
+**Output:** Card with thumbnail at top, audience tag badge, title, module count + duration metadata row (DM Mono, Silver Muted), description, price badge (Mustard), CTA button. Visually distinct from `service-card`: thumbnail signals "watch/learn" rather than "book a session."
+
+**Note:** Dynamic block — renders via `render.php` so data can optionally be pulled from the `onyx_course` custom post type (Phase 4 option).
 
 ---
 
@@ -243,19 +253,27 @@ Each block is a standard `@wordpress/scripts`-compiled block with `block.json`, 
 - `number` (string, e.g., `01`)
 - `label` (string, e.g., `קורסים`)
 
-**Output:** `01 — קורסים` in DM Mono 400, 10px, uppercase, Silver Muted, with correct letter-spacing. Thin Electric left border accent.
+**Output:** `01 — קורסים` in DM Mono 400, 10px, uppercase, Silver Muted `#7A7060`, +0.18em tracking. Thin Mustard left border accent (flips to right in RTL via logical CSS).
 
 ---
 
 #### `onyx-ai/tag-badge`
 
-**Used on:** Course cards, resource cards, anywhere a pill label is needed.
+**Used on:** Service cards, recorded cards, anywhere a pill label is needed.
 
 **Attributes:**
 - `text`
-- `variant` — `electric` | `teal` | `amber`
+- `variant` — `mustard` | `teal` | `amber`
 
-**Output:** Pill badge per brand spec.
+**Output:**
+
+| Variant | Background | Text |
+|---|---|---|
+| mustard | `#3D2E10` | `#D4A84B` |
+| teal | `rgba(0,212,170,0.12)` | `#00D4AA` |
+| amber | `rgba(255,183,77,0.12)` | `#FFB74D` |
+
+Border-radius: 100px · Padding: 5px 12px · Font: DM Mono 400, 10px, uppercase, +0.10em.
 
 ---
 
@@ -269,34 +287,40 @@ Each block is a standard `@wordpress/scripts`-compiled block with `block.json`, 
 - `arrow` — boolean (appends `→`)
 - `size` — `default` | `large`
 
-**Output:** Brand-spec button. Primary: Electric fill + white text. Secondary: transparent + Electric-Light text + Electric-Dim border. Ghost: Surface fill + Silver text.
+**Output:**
+
+| Variant | Background | Text | Border |
+|---|---|---|---|
+| primary | `#C8922A` | `#FFFFFF` | none |
+| secondary | transparent | `#D4A84B` | 1px `#3D2E10` |
+| ghost | `#2E2820` | `#C8BFB0` | 0.5px `#3D3528` |
+
+Border-radius: 8px · Padding: 12px 24px · Font: Exo 2 600, 13px, +0.04em.
 
 ---
 
 #### `onyx-ai/testimonial`
 
-**Used on:** Landing pages, Homepage proof strip, individual service/course pages.
+**Used on:** Audience hub pages, homepage proof strip.
 
 **Attributes:**
 - `quote`, `author`, `role`, `avatarUrl`
 - `layout` — `card` | `inline` | `featured`
 
-**Output:** Testimonial card in Surface background with quote, author, role, optional avatar.
+**Output:** Testimonial card in Surface `#2E2820` background.
 
 ---
 
 #### `onyx-ai/newsletter-optin`
 
-**Used on:** Homepage section 8, Blog sidebar, Resources page, Blog post footers.
+**Used on:** Homepage, blog post footers.
 
 **Attributes:**
-- `headline`, `subtext`
-- `hook` — the specific reason to subscribe (replaces generic "subscribe")
-- `buttonLabel`
-- `formProvider` — `mailchimp` | `convertkit` | `custom` (stores API endpoint or embed code)
+- `headline`, `subtext`, `hook`, `buttonLabel`
+- `formProvider` — `mailchimp` | `convertkit` | `custom`
 - `layout` — `full-width` | `inline` | `sidebar`
 
-**Output:** Email field + button form, full-width dark section or inline card depending on layout.
+**Output:** Email field + button form. Full-width dark section or inline card.
 
 ---
 
@@ -316,44 +340,28 @@ Each block is a standard `@wordpress/scripts`-compiled block with `block.json`, 
 
 #### `onyx-ai/faq-accordion`
 
-**Used on:** Courses index, individual course/service pages, landing pages.
+**Used on:** Audience hub pages.
 
 **Attributes:**
 - Array of FAQ items: `question`, `answer` (rich text)
 
-**Output:** Accessible accordion (`<details>`/`<summary>` pattern), animated with brand easing. Surface background cards.
-
----
-
-#### `onyx-ai/landing-section`
-
-**Used on:** Landing pages only.
-
-**Purpose:** Wraps each of the 10 standard landing page sections (Hero, Problem, Solution, What's Included, Who It's For, Social Proof, About, FAQ, Final CTA, Minimal Footer). Acts as a labeled container in the editor so content authors can identify sections at a glance.
-
-**Attributes:**
-- `sectionType` — enum of the 10 section types
-- `backgroundColor` — inherits from theme palette
-
-**Output:** Semantic section wrapper with optional top divider.
+**Output:** Accessible accordion (`<details>`/`<summary>`), animated with brand easing. Surface background cards.
 
 ---
 
 ### Block Patterns
 
-Block patterns are pre-composed block layouts registered in the theme's `patterns/` directory. They appear in the "Onyx AI" category in the block inserter and give editors one-click access to complete page section layouts.
+Registered in the theme's `patterns/` directory under the "Onyx AI" category.
 
 | Pattern | Composition |
 |---|---|
 | `hero-homepage` | `section-label` + `hero` (homepage variant) |
-| `hero-landing` | `hero` (landing variant) — no nav, above fold |
-| `audience-fork` | `section-label` + `audience-fork` |
-| `course-card-grid` | `section-label` + 3× `course-card` in Columns block |
-| `service-card-grid` | `section-label` + 4× `service-card` in Columns block |
+| `audience-fork` | `section-label` + `audience-fork` (3 cards) |
+| `service-card-grid` | `section-label` + 3–4× `service-card` in Columns block |
+| `recorded-card-grid` | `section-label` + 2–3× `recorded-card` in Columns block |
 | `testimonial-strip` | `proof-strip` + 3× `testimonial` (inline) |
 | `newsletter-cta` | `section-label` + `newsletter-optin` (full-width) |
 | `about-teaser` | `about-teaser` block |
-| `landing-page-full` | All 10 `landing-section` wrappers pre-stacked |
 | `faq-section` | `section-label` + `faq-accordion` |
 
 ---
@@ -364,15 +372,13 @@ Only essential plugins. No page builders.
 
 | Plugin | Purpose | Notes |
 |---|---|---|
-| **Yoast SEO** (or Rank Math) | Hebrew meta titles, meta descriptions, structured data, sitemap | Configure `noindex` on all `/lp/*` pages and lead magnet pages |
+| **Yoast SEO** (or Rank Math) | Hebrew meta titles, meta descriptions, structured data, sitemap | |
 | **WP Rocket** (or Perfmatters) | Caching, asset minification, lazy loading | |
-| **Redirection** | URL redirects management | For campaign URL management |
-| **Contact Form 7** (or Gravity Forms) | Lead capture on consulting/service pages | Only if newsletter plugin doesn't cover all cases |
+| **Redirection** | URL redirects management | |
+| **Contact Form 7** (or Gravity Forms) | Lead capture on consultation CTAs | Only if newsletter plugin doesn't cover all cases |
 | **Email marketing integration** | MailChimp / ConvertKit / ActiveCampaign plugin | Connects `newsletter-optin` block |
-| **Cloudinary** (or similar CDN) | Image delivery and optimization | Optional — WP Rocket covers basics |
-| **WP Multilingual (WPML)** (optional) | If mixed Hebrew/English per-page is needed | Evaluate post-launch |
 
-**Explicitly not used:** Elementor, WPBakery, Divi, Beaver Builder, ACF (Advanced Custom Fields — blocks handle all structured data natively), or WooCommerce (external course platform handles payments).
+**Explicitly not used:** Elementor, WPBakery, Divi, ACF, or WooCommerce.
 
 ---
 
@@ -383,19 +389,15 @@ Only essential plugins. No page builders.
 At launch, all content uses standard WordPress post types (Pages and Posts). One optional CPT may be added:
 
 **`onyx_course`** (optional, Phase 4+):
-- Fields: title, description, audience, price, external URL, featured image, audience tag
-- If registered, `course-card` block queries it dynamically
-- If not registered at launch, course cards are fully manually authored in the block editor — no CPT dependency
+- Fields: title, description, audience, price, duration, module count, thumbnail, external purchase URL, audience tag
+- If registered, `recorded-card` block queries it dynamically
+- If not registered at launch, recorded-card blocks are manually authored in the editor
 
-**`onyx_resource`** (optional, Phase 4+):
-- Fields: type badge, title, description, CTA, gated flag
-- Same pattern as course CPT
-
-At launch, skip CPTs and author all content manually. Add CPTs in a future phase when the catalog grows large enough to benefit from a structured data layer.
+At launch, skip the CPT and author all content manually. Add it when the course catalog grows large enough to benefit from a structured data layer.
 
 ### Blog Taxonomy
 
-Register a custom taxonomy `onyx_content_cluster` with four terms:
+Register a custom taxonomy `onyx_content_cluster` on `post`:
 
 | Term | Slug | Audience |
 |---|---|---|
@@ -404,25 +406,19 @@ Register a custom taxonomy `onyx_content_cluster` with four terms:
 | מדריכים מעשיים | `practical-guides` | Both |
 | דעות ומגמות | `opinions-trends` | Both |
 
-Assign this taxonomy to both `post` and `onyx_resource` post types. Used for the filter tabs on `/blog` and `/resources`.
-
 ### URL Structure
 
 | Page | WordPress setup |
 |---|---|
 | `/` | Static front page → Homepage page |
+| `/developers` | Page with slug `developers` |
+| `/business` | Page with slug `business` |
+| `/organizations` | Page with slug `organizations` |
 | `/about` | Page with slug `about` |
-| `/courses` | Page with slug `courses` |
-| `/courses/[slug]` | Sub-pages or CPT archive URL |
-| `/services` | Page with slug `services` |
-| `/services/[slug]` | Sub-pages |
 | `/blog` | Blog posts page (Settings → Reading) |
 | `/blog/[slug]` | Standard WordPress posts |
-| `/resources` | Page with slug `resources` |
-| `/resources/[slug]` | Sub-pages for lead magnet opt-in pages |
-| `/lp/[slug]` | Sub-pages under a parent `lp` page (noindex, landing template) |
-| `/privacy` | Page with slug `privacy` |
 | `/terms` | Page with slug `terms` |
+| `/privacy` | Page with slug `privacy` |
 
 Permalink structure: `/%postname%/`
 
@@ -430,7 +426,7 @@ Permalink structure: `/%postname%/`
 
 ## Phase 5 — Page-by-Page Content Implementation
 
-Each page is built in the Gutenberg editor using the custom blocks and patterns above. This is the authoring sequence.
+All pages built in the Gutenberg editor using custom blocks and patterns. Content stored in the WordPress database — no hardcoded templates.
 
 ### Build order (recommended)
 
@@ -438,52 +434,45 @@ Each page is built in the Gutenberg editor using the custom blocks and patterns 
 1. Theme installed, `theme.json` complete, all design tokens confirmed
 2. All custom blocks built and tested in isolation
 3. All block patterns registered
-4. FSE templates built (home, page, page-landing, single, archive)
+4. FSE templates built (home, page, single, archive)
 5. Header and footer template parts built
 
 **Round 2 — Core pages**
 6. Homepage — all 10 sections assembled from patterns
 7. About page
-8. Courses index
-9. Services index
+8. Blog index (template-driven, no content authoring needed)
 
-**Round 3 — Product pages**
-10. 3× Individual course pages
-11. 4× Individual service pages (consulting, bootcamp, workshop, community)
+**Round 3 — Audience hub pages**
+9. Developers Hub (`/developers`) — hero, journey, service-card grids, recorded-card grid, FAQ, CTA
+10. Business Hub (`/business`) — same structure, business-specific content
+11. Organizations Hub (`/organizations`) — org services primary, supporting services secondary, FAQ, CTA
 
-**Round 4 — Content and conversion pages**
-12. Blog index (template-driven, no content authoring needed)
-13. Resources page
-14. 6× Landing pages under `/lp/`
-15. 1–2 Lead magnet opt-in pages
-
-**Round 5 — Legal and infrastructure**
-16. Privacy policy page
-17. Terms of use page
-18. 404 page (FSE template)
-19. SEO plugin configuration (meta, sitemap, noindex rules)
-20. Newsletter integration wired to `newsletter-optin` block
+**Round 4 — Legal and infrastructure**
+12. Terms of use page
+13. Privacy policy page
+14. 404 page (FSE template)
+15. SEO plugin configuration (meta, sitemap)
+16. Newsletter integration wired to `newsletter-optin` block
 
 ---
 
 ## Phase 6 — RTL & Hebrew Considerations
 
-- `<html lang="he" dir="rtl">` set via `language_attributes()` in the theme when WordPress language is set to Hebrew
-- All block CSS uses logical properties (`margin-inline-start`, `padding-inline-end`) rather than left/right where layout depends on direction
-- Heebo font loaded and applied as `font-family` when `is_rtl()` is true (filtered via `theme.json` or a body class hook)
+- `<html lang="he" dir="rtl">` set via `language_attributes()` when WordPress language is set to Hebrew
+- All block CSS uses logical properties (`margin-inline-start`, `padding-inline-end`) rather than left/right
+- Heebo font applied as `font-family` when `is_rtl()` is true
 - Navigation, footer columns, and card layouts tested in RTL
-- The `onyx-ai/section-label` block's left border accent becomes a right border accent in RTL automatically via logical CSS properties
+- `onyx-ai/section-label` Mustard left border accent becomes right border accent in RTL via logical CSS
 
 ---
 
 ## Phase 7 — SEO Implementation
 
-- Yoast SEO (or Rank Math) installed and configured for Hebrew content
-- Every page has a manually authored Hebrew `<title>` (≤60 chars) and `<meta description>` (≤160 chars) set in the Yoast panel within the editor
-- Blog posts and resources use Article structured data (auto-generated by Yoast)
-- All `/lp/*` pages and `/resources/[magnet-slug]` pages set to `noindex, nofollow` in Yoast
+- Yoast SEO (or Rank Math) configured for Hebrew content
+- Every page has a manually authored Hebrew `<title>` (≤60 chars) and `<meta description>` (≤160 chars)
+- Blog posts use Article structured data (auto-generated by Yoast)
 - XML sitemap generated automatically — submitted to Google Search Console
-- Every blog post and resource manually links to at least one course or service page (editorial rule, not automated)
+- Every blog post links internally to at least one audience hub page
 
 ---
 
@@ -491,10 +480,20 @@ Each page is built in the Gutenberg editor using the custom blocks and patterns 
 
 - Target: Lighthouse Performance score ≥ 90 on mobile
 - Fonts: WOFF2, `font-display: swap`, preloaded in `<head>`
-- Images: WebP format, `loading="lazy"` on all below-fold images, explicit `width`/`height` to prevent CLS
+- Images: WebP format, `loading="lazy"` on all below-fold images, explicit `width`/`height`
 - JavaScript: All block scripts deferred, no render-blocking JS
-- CSS: Critical CSS inlined for above-fold content (WP Rocket handles this)
+- CSS: Critical CSS inlined for above-fold content (WP Rocket)
 - No unused plugin CSS/JS loaded on frontend
+
+---
+
+## Motion & Animation
+
+- Easing: `cubic-bezier(0.16, 1, 0.3, 1)` — fast in, slow settle
+- Duration: 200ms (micro), 400ms (transition), 600ms (entrance)
+- Page entrances: staggered fade-up (`translateY(16px)` → `0`, opacity `0` → `1`)
+- Hover on cards: `transform: translateY(-2px)`, border brightens to `#4D4030` (warm)
+- Respect `prefers-reduced-motion`
 
 ---
 
@@ -510,46 +509,42 @@ sass                     # SCSS compilation (via @wordpress/scripts)
 wp-env                   # Local WordPress environment for development
 ```
 
-**Local development:** `@wordpress/env` (wp-env) — Docker-based, zero-config local WP environment. Run `wp-env start` inside the project root.
+**Local development:** `@wordpress/env` (wp-env) — Docker-based, zero-config. Run `wp-env start` inside the project root.
 
-**Block build:** `npm run build` compiles all blocks in `src/` to `build/`. `npm run start` watches for changes during development.
+**Block build:** `npm run build` compiles all blocks in `src/` to `build/`. `npm run start` watches for changes.
 
 ---
 
 ## Deliverables Checklist
 
 ### Theme (`onyx-ai`)
-- [ ] `theme.json` with full brand token set
+- [ ] `theme.json` with full warm brand token set (Charcoal/Mustard palette)
 - [ ] `style.css` with theme header
 - [ ] `functions.php` (font enqueue, theme supports, pattern registration)
-- [ ] FSE templates: `home`, `page`, `page-landing`, `single`, `archive`, `404`
-- [ ] Template parts: `header`, `header-minimal`, `footer`, `footer-minimal`
-- [ ] Block patterns (all 10 listed above)
+- [ ] FSE templates: `home`, `page`, `single`, `archive`, `404`
+- [ ] Template parts: `header`, `footer`
+- [ ] Block patterns (all 8 listed above)
 
 ### Plugin (`onyx-ai-blocks`)
 - [ ] Plugin bootstrap file with proper header
-- [ ] All 14 custom blocks built, tested, documented
-- [ ] Self-hosted fonts (Syne, DM Sans, DM Mono, Heebo) in WOFF2
+- [ ] All 13 custom blocks built, tested, documented
+- [ ] Self-hosted fonts (Exo 2, DM Sans, DM Mono, Heebo) in WOFF2
 - [ ] Lucide icon subset as inline SVG or sprite
 - [ ] `block.json` for every block (metadata, attributes, supports)
 - [ ] Editor styles matching frontend render
 
-### Pages (~23 total)
+### Pages (8 total)
 - [ ] Homepage (all 10 sections)
+- [ ] Developers Hub (`/developers`)
+- [ ] Business Hub (`/business`)
+- [ ] Organizations Hub (`/organizations`)
 - [ ] About
-- [ ] Courses index
-- [ ] 3× Course pages
-- [ ] Services index
-- [ ] 4× Service pages
-- [ ] Blog index (template only)
-- [ ] Resources
-- [ ] 6× Landing pages
-- [ ] 1–2 Lead magnet pages
-- [ ] Privacy, Terms
+- [ ] Blog index (template only, no content authoring)
+- [ ] Terms
+- [ ] Privacy
 
 ### Configuration
 - [ ] SEO plugin installed and configured
-- [ ] All `/lp/*` and lead magnet pages set to `noindex`
 - [ ] Newsletter integration connected
 - [ ] Sitemap submitted to Google Search Console
 - [ ] WP language set to Hebrew
@@ -557,4 +552,4 @@ wp-env                   # Local WordPress environment for development
 
 ---
 
-*Onyx AI WordPress Implementation Plan · v1.0 · 2026-04-17*
+*Onyx AI WordPress Implementation Plan · v2.0 · 2026-04-19*

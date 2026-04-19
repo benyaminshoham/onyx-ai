@@ -1,5 +1,5 @@
 # Homepage Copy — Onyx AI
-**Rewritten with marketing-copy skill. Structure references for re-injection into `mockups/homepage.html`.**
+**Source of truth for homepage section copy. Structure references for re-injection into `mockups/homepage.html`.**
 
 ---
 
@@ -10,7 +10,7 @@
 |---|---|---|
 | Section label | `.label` | `01 — ברוכים הבאים` |
 | Headline line 1 | `h1` (plain) | `פחות עבודה ידנית.` |
-| Headline line 2 | `h1 > span.hero-accent` (Electric color) | `יותר תוצאות.` |
+| Headline line 2 | `h1 > span.hero-accent` (Mustard color) | `יותר תוצאות.` |
 | Subheading | `p.hero-sub` | `קורסים, ייעוץ, ואוטומציות AI — למפתחים שרוצים להפוך ל-AI-native, ולבעלי עסקים שרוצים לחסוך 10+ שעות בשבוע.` |
 | CTA primary | `a.btn.btn-primary` | `אני מפתח/ת — בוא/י נבנה →` |
 | CTA secondary | `a.btn.btn-secondary` | `אני בעל/ת עסק — רוצה לחסוך →` |
@@ -28,14 +28,21 @@
 | Field | Element | Copy |
 |---|---|---|
 | Section label | `.label` | `02 — מה מחפשים?` |
-| **Card 1 — Developer** | `.fork-card:first-child` | |
+| **Card 1 — Developer** | `.fork-card:nth-child(1)` | |
 | Card title | `h3` | `אני מפתח/ת` |
 | Card body | `p` | `ה-developers שמשלבים AI בקוד שלהם שולחים מהר יותר ושווים יותר לשוק. נהפוך אותך לאחד מהם — עם Claude API, MCP, ו-Cursor.` |
 | Card link | `a.fork-link` | `לקורסים ולייעוץ למפתחים →` |
-| **Card 2 — Business** | `.fork-card:last-child` | |
+| Card link href | | `/developers` |
+| **Card 2 — Business** | `.fork-card:nth-child(2)` | |
 | Card title | `h3` | `אני בעל/ת עסק` |
 | Card body | `p` | `עסקים שמאמצים AI חוסכים 10+ שעות עבודה בשבוע — בלי לגייס, בלי ידע בתכנות. נבנה לך את האוטומציות ביחד.` |
 | Card link | `a.fork-link` | `לאוטומציה עסקית →` |
+| Card link href | | `/business` |
+| **Card 3 — Organizations** | `.fork-card:nth-child(3)` | |
+| Card title | `h3` | `אני מנהל/ת בארגון` |
+| Card body | `p` | `חברות שמטמיעות AI בצוות מדווחות על ספרינטים קצרים יותר, פחות עבודה ידנית, ויכולת אמיתית שנשארת. נבנה את זה יחד.` |
+| Card link | `a.fork-link` | `לשירותים ארגוניים →` |
+| Card link href | | `/organizations` |
 
 ---
 
@@ -84,7 +91,7 @@
 
 ---
 
-## S05 — Featured Courses
+## S05 — Featured Offerings
 `section#courses`
 
 | Field | Element | Copy |
@@ -93,7 +100,7 @@
 | Section CTA | `.btn.btn-ghost` (below grid) | `לכל הקורסים →` |
 | **Course 1** | `.course-card:nth-child(1)` | |
 | Title | `.course-title` | `Claude API למפתחים` |
-| Audience tag | `span.tag` (`tag-electric`) | `מפתחים` |
+| Audience tag | `span.tag` (`tag-mustard`) | `מפתחים` |
 | Description | `p.course-desc` | `מ-API key ועד אפליקציה שרצה בproduction — Claude API, tool use, MCP, ו-agents. לא עוד תיאוריה.` |
 | Price | `.course-price` | `₪890` |
 | Price sub-label | `.course-price small` | `/ גישה עולמית` |
@@ -107,7 +114,7 @@
 | CTA | `a.btn.btn-primary` | `לפרטים המלאים →` |
 | **Course 3** | `.course-card:nth-child(3)` | |
 | Title | `.course-title` | `Cursor — לפתח עם AI` |
-| Audience tag | `span.tag` (`tag-electric`) | `מפתחים` |
+| Audience tag | `span.tag` (`tag-mustard`) | `מפתחים` |
 | Description | `p.course-desc` | `שלח/י פיצ'רים ביום, לא בשבוע. Cursor ו-AI-assisted development — debug חכם, קוד מהיר, production לפני כולם.` |
 | Price | `.course-price` | `₪490` |
 | Price sub-label | `.course-price small` | `/ גישה עולמית` |
@@ -115,7 +122,7 @@
 
 ---
 
-## S06 — Featured Service
+## S06 — Featured Program
 `section#service`
 
 | Field | Element | Copy |
@@ -148,7 +155,7 @@
 | Description | `p.res-desc` | `10 אוטומציות שאפשר להפעיל היום — ולא לחזור לאיך שעבדת אתמול.` |
 | Link | `a.res-link` | `לקריאה` |
 | **Resource 2** | `.res-card:nth-child(2)` | |
-| Type badge | `.res-type` (electric-light) | `תבנית` |
+| Type badge | `.res-type` (mustard) | `תבנית` |
 | Title | `.res-title` | `Prompt Template Pack — Claude לעבודה יומיומית` |
 | Description | `p.res-desc` | `20 פרומפטים שעובדים — לכתיבה, ניתוח, דיוורים, וסיכומי פגישות. להדביק ולרוץ.` |
 | Link | `a.res-link` | `להורדה חינם` |
