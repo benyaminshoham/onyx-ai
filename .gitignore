@@ -1,1 +1,29 @@
+# OS & editor
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# WordPress core — not tracked; install via WP-CLI
+wp-admin/
+wp-includes/
+wp-*.php
+xmlrpc.php
+index.php
+license.txt
+readme.html
+
+# wp-config contains secrets — use wp-config-sample.php as reference
+wp-config.php
+
+# wp-content: only track custom theme + plugin
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/
+wp-content/plugins/akismet/
+wp-content/plugins/hello.php
+wp-content/themes/twenty*/
