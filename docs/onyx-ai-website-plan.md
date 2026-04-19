@@ -25,7 +25,7 @@ The **main site** (homepage, audience hubs, services, blog, resources) is built 
 
 ## Services Overview
 
-All seven services are organized into two formats:
+All ten services are organized into three formats:
 
 ### תהליכים קבוצתיים (Group Programs)
 
@@ -44,6 +44,14 @@ All seven services are organized into two formats:
 | ייעוץ | Consulting | Focused sessions, hourly | All |
 | פיתוח | Development | Project-based | All |
 
+### שירותים ארגוניים (Organizational Services)
+
+| Service | Hebrew | Format | Audience |
+|---|---|---|---|
+| הטמעה עסקית | Business AI Implementation | Custom project · per-project pricing | Companies & organizations |
+| הטמעה טכנולוגית | Tech Team AI Implementation | Custom project · per-project pricing | CTOs, VP R&D, dev managers |
+| תשתית AI | AI Infrastructure | Custom project · per-scope pricing | Organizations building internal AI capability |
+
 ---
 
 ## Site Map
@@ -60,7 +68,8 @@ All seven services are organized into two formats:
 4. **Social proof** — Numbers + 2 testimonials
 5. **Group programs** — 4 cards (the 4 group תהליכים), organized by audience
 6. **Personal work** — 3 cards (ליווי · ייעוץ · פיתוח)
-7. **Featured program** — Spotlight on the current open group program
+7. **Organizational services** — 3 cards (הטמעה עסקית · הטמעה טכנולוגית · תשתית AI)
+8. **Featured program** — Spotlight on the current open group program
 8. **Free resources teaser** — 3 cards
 9. **Newsletter opt-in** — Single field, specific hook
 10. **About teaser** — Photo, 2-line bio, link to full About
@@ -109,12 +118,11 @@ All seven services are organized into two formats:
 **Sections:**
 - Hero — organizational framing: rolling out AI across a team, not just one person
 - What we build together — three paths: סדנה לצוות · ייעוץ אסטרטגי · פיתוח מותאם
-- Services — ייעוץ + ליווי + פיתוח presented with organizational scope
+- Organizational services — הטמעה עסקית · הטמעה טכנולוגית · תשתית AI as primary offerings
+- Supporting services — ייעוץ + ליווי + פיתוח presented with organizational scope
 - Proof — results or case studies from company-level work
 - Process — how an engagement works from first call to delivery
 - CTA — "ספרו לי על הצוות שלכם" — discovery call
-
-**Note:** No group programs in this path. Organizations get tailored scope via ייעוץ, ליווי, and פיתוח.
 
 **SEO targets:** "הטמעת AI בארגון", "AI לצוותים", "ייעוץ AI לחברות", "סדנת AI לצוות"
 
@@ -141,6 +149,9 @@ All seven services are organized into two formats:
 | ליווי | `/services/livui` |
 | ייעוץ | `/services/yaauts` |
 | פיתוח | `/services/pitua` |
+| הטמעה עסקית | `/services/hatmaa-business` |
+| הטמעה טכנולוגית | `/services/hatmaa-tech` |
+| תשתית AI | `/services/ai-infrastructure` |
 
 Each service page is a full sales page (see Landing Page structure) but with the main site nav intact.
 
@@ -217,7 +228,9 @@ Every post ends with a contextual CTA — a relevant service page or newsletter 
 | `/lp/haatza-business` | Business owners | האצה לעסקים |
 | `/lp/haatza-dev` | Developers | האצה למפתחים |
 | `/lp/livui` | All | ליווי אישי |
-| `/lp/orgs` | Companies | Organizational engagement |
+| `/lp/hatmaa-business` | Companies | הטמעה עסקית |
+| `/lp/hatmaa-tech` | CTOs / dev managers | הטמעה טכנולוגית |
+| `/lp/ai-infrastructure` | Organizations | תשתית AI |
 
 Additional `/lp/*` pages created per campaign.
 
@@ -242,7 +255,7 @@ Standard pages. Linked from all footers including landing page minimal footers.
 - Col 1: Logo + tagline + social links
 - Col 2: ניווט — Home · About · Blog · Resources
 - Col 3: לפי קהל — למפתחים · לעסקים · לארגונים · שירותים
-- Col 4: שירותים — 4 group programs + 3 personal services
+- Col 4: שירותים — 4 group programs + 3 personal services + 3 organizational services
 - Bottom bar: © Onyx AI · Privacy · Terms · contact
 
 ---
@@ -263,10 +276,10 @@ Standard pages. Linked from all footers including landing page minimal footers.
 | Type | Count |
 |---|---|
 | Static pages (Home, About, Developers, Business, Organizations, Services index, Resources, Blog index, Privacy, Terms) | 10 |
-| Individual service pages | 7 |
-| Landing pages | 6 |
+| Individual service pages | 10 |
+| Landing pages | 8 |
 | Lead magnet opt-in pages | 1–2 |
-| **Total** | **~25 pages** |
+| **Total** | **~30 pages** |
 
 Blog posts and resource cards added continuously post-launch.
 
