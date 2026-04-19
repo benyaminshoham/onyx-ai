@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "onyx-ai/service-card",
+  "version": "1.0.0",
+  "title": "Service Card",
+  "category": "onyx-ai",
+  "description": "Card for group, personal, or organizational services with icon, title, format badge, and CTA.",
+  "keywords": [
+    "service",
+    "card",
+    "program",
+    "workshop"
+  ],
+  "textdomain": "onyx-ai-blocks",
+  "attributes": {
+    "icon": {
+      "type": "string",
+      "default": "zap"
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "audienceTag": {
+      "type": "string",
+      "default": ""
+    },
+    "serviceType": {
+      "type": "string",
+      "default": "group",
+      "enum": [
+        "group",
+        "personal",
+        "organizational"
+      ]
+    },
+    "format": {
+      "type": "string",
+      "default": ""
+    },
+    "nextDate": {
+      "type": "string",
+      "default": ""
+    },
+    "price": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaLabel": {
+      "type": "string",
+      "default": "לפרטים"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "html": false,
+    "color": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:../style-service-card/index.css"
+}

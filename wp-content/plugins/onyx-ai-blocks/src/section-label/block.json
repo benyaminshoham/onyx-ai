@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/section-label",
+	"version": "1.0.0",
+	"title": "Section Label",
+	"category": "onyx-ai",
+	"description": "Numbered section label: \"01 — קורסים\" in DM Mono with Mustard border accent.",
+	"keywords": [ "section", "label", "number", "eyebrow" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"number": { "type": "string", "default": "01" },
+		"label":  { "type": "string", "default": "" }
+	},
+	"supports": {
+		"html": false,
+		"color": false,
+		"spacing": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:../style-section-label/index.css"
+}

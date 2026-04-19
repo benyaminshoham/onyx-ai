@@ -1,0 +1,56 @@
+.onyx-proof-strip {
+	&__stats {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--wp--preset--spacing--xl);
+		justify-content: center;
+		margin-block-end: var(--wp--preset--spacing--xl);
+	}
+
+	&__stat {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--wp--preset--spacing--xs);
+		text-align: center;
+	}
+
+	&__number {
+		font-family: var(--wp--preset--font-family--exo-2);
+		font-size: var(--wp--preset--font-size--display);
+		font-weight: 800;
+		color: var(--wp--preset--color--mustard-light);
+		line-height: 1;
+	}
+
+	&__label {
+		font-family: var(--wp--preset--font-family--heebo);
+		font-size: var(--wp--preset--font-size--sm);
+		font-weight: 300;
+		color: var(--wp--preset--color--silver-muted);
+		letter-spacing: 0.04em;
+	}
+
+	&__quotes {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--md);
+		border-block-start: 1px solid var(--wp--preset--color--border);
+		padding-block-start: var(--wp--preset--spacing--xl);
+	}
+
+	&__quote {
+		font-family: var(--wp--preset--font-family--heebo);
+		font-size: var(--wp--preset--font-size--md);
+		font-weight: 300;
+		color: var(--wp--preset--color--silver);
+		line-height: 1.7;
+		text-align: center;
+		margin: 0;
+
+		strong {
+			color: var(--wp--preset--color--white);
+			font-weight: 500;
+		}
+	}
+}

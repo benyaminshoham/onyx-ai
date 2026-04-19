@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/about-teaser",
+	"version": "1.0.0",
+	"title": "About Teaser",
+	"category": "onyx-ai",
+	"description": "Photo + short bio side-by-side card with credibility line and link to About page.",
+	"keywords": [ "about", "bio", "teaser", "author" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"photoUrl":        { "type": "string", "default": "" },
+		"photoAlt":        { "type": "string", "default": "" },
+		"bio":             { "type": "string", "default": "" },
+		"credibilityLine": { "type": "string", "default": "" },
+		"linkLabel":       { "type": "string", "default": "קראו עוד עליי →" },
+		"linkUrl":         { "type": "string", "default": "/about" }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:../style-about-teaser/index.css"
+}

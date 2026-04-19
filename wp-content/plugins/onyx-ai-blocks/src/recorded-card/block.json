@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/recorded-card",
+	"version": "1.0.0",
+	"title": "Recorded Course Card",
+	"category": "onyx-ai",
+	"description": "Card for a recorded video course — thumbnail, metadata, price badge, and CTA. Rendered via PHP.",
+	"keywords": [ "course", "recorded", "video", "card" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"title":        { "type": "string", "default": "" },
+		"audienceTag":  { "type": "string", "default": "dev", "enum": [ "dev", "biz", "org" ] },
+		"description":  { "type": "string", "default": "" },
+		"price":        { "type": "string", "default": "" },
+		"duration":     { "type": "string", "default": "" },
+		"moduleCount":  { "type": "string", "default": "" },
+		"thumbnailUrl": { "type": "string", "default": "" },
+		"thumbnailAlt": { "type": "string", "default": "" },
+		"ctaLabel":     { "type": "string", "default": "לרכישה" },
+		"ctaUrl":       { "type": "string", "default": "" },
+		"featured":     { "type": "boolean", "default": false }
+	},
+	"supports": {
+		"html": false,
+		"color": false
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"style": "file:../style-recorded-card/index.css"
+}

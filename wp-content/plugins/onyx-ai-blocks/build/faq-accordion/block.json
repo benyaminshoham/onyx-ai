@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "onyx-ai/faq-accordion",
+  "version": "1.0.0",
+  "title": "FAQ Accordion",
+  "category": "onyx-ai",
+  "description": "Accessible accordion with animated open/close using <details>/<summary>.",
+  "keywords": [
+    "faq",
+    "accordion",
+    "questions",
+    "answers"
+  ],
+  "textdomain": "onyx-ai-blocks",
+  "attributes": {
+    "items": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:../style-faq-accordion/index.css"
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/cta-button",
+	"version": "1.0.0",
+	"title": "CTA Button",
+	"category": "onyx-ai",
+	"description": "Brand CTA button in primary, secondary, or ghost variant.",
+	"keywords": [ "button", "cta", "link", "action" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"label":   { "type": "string", "default": "" },
+		"url":     { "type": "string", "default": "" },
+		"variant": { "type": "string", "default": "primary", "enum": [ "primary", "secondary", "ghost" ] },
+		"arrow":   { "type": "boolean", "default": false },
+		"size":    { "type": "string", "default": "default", "enum": [ "default", "large" ] }
+	},
+	"supports": {
+		"html": false,
+		"color": false,
+		"spacing": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:../style-cta-button/index.css"
+}

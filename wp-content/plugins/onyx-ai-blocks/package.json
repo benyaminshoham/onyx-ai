@@ -1,0 +1,23 @@
+{
+	"name": "onyx-ai-blocks",
+	"version": "1.0.0",
+	"description": "Custom Gutenberg blocks for Onyx AI",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build --webpack-src-dir=src --output-path=build",
+		"start": "wp-scripts start --webpack-src-dir=src --output-path=build",
+		"lint:js": "wp-scripts lint-js ./src",
+		"lint:css": "wp-scripts lint-style ./src",
+		"format": "wp-scripts format ./src"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.0.0"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "*",
+		"@wordpress/blocks": "*",
+		"@wordpress/components": "*",
+		"@wordpress/element": "*",
+		"@wordpress/i18n": "*"
+	}
+}

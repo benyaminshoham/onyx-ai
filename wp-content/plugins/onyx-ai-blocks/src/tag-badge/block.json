@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/tag-badge",
+	"version": "1.0.0",
+	"title": "Tag Badge",
+	"category": "onyx-ai",
+	"description": "Pill badge in mustard, teal, or amber variant.",
+	"keywords": [ "badge", "tag", "pill", "label" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"text":    { "type": "string", "default": "" },
+		"variant": { "type": "string", "default": "mustard", "enum": [ "mustard", "teal", "amber" ] }
+	},
+	"supports": {
+		"html": false,
+		"color": false,
+		"spacing": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:../style-tag-badge/index.css"
+}

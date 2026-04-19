@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/newsletter-optin",
+	"version": "1.0.0",
+	"title": "Newsletter Opt-in",
+	"category": "onyx-ai",
+	"description": "Email opt-in form with headline, subtext, hook line, and provider integration.",
+	"keywords": [ "newsletter", "email", "opt-in", "subscribe" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"headline":     { "type": "string", "default": "" },
+		"subtext":      { "type": "string", "default": "" },
+		"hook":         { "type": "string", "default": "" },
+		"buttonLabel":  { "type": "string", "default": "הרשמה" },
+		"formProvider": { "type": "string", "default": "mailchimp", "enum": [ "mailchimp", "convertkit", "custom" ] },
+		"layout":       { "type": "string", "default": "full-width", "enum": [ "full-width", "inline", "sidebar" ] }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:./index.js",
+	"style": "file:../style-newsletter-optin/index.css"
+}

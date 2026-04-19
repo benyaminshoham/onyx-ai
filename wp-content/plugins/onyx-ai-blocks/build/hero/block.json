@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "onyx-ai/hero",
+  "version": "1.0.0",
+  "title": "Hero",
+  "category": "onyx-ai",
+  "description": "Full-width hero section with eyebrow, headline, subheading, and CTAs.",
+  "keywords": [
+    "hero",
+    "banner",
+    "headline"
+  ],
+  "textdomain": "onyx-ai-blocks",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": ""
+    },
+    "headline": {
+      "type": "string",
+      "default": ""
+    },
+    "subheading": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaPrimaryLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaPrimaryUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaSecondaryLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaSecondaryUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "variant": {
+      "type": "string",
+      "default": "homepage",
+      "enum": [
+        "homepage",
+        "audience"
+      ]
+    },
+    "backgroundDecoration": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "full"
+    ],
+    "color": false,
+    "spacing": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:../style-hero/index.css"
+}

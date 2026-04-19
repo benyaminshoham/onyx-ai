@@ -1,0 +1,44 @@
+/*
+ * Self-hosted variable fonts for Onyx AI.
+ *
+ * Download WOFF2 files from Google Fonts and place them in this directory:
+ *   Exo2-Variable.woff2       — https://fonts.google.com/specimen/Exo+2
+ *   DMSans-Variable.woff2     — https://fonts.google.com/specimen/DM+Sans
+ *   DMMono-Regular.woff2      — https://fonts.google.com/specimen/DM+Mono
+ *   Heebo-Variable.woff2      — https://fonts.google.com/specimen/Heebo
+ *
+ * theme.json declares these via fontFace — WordPress handles the @font-face
+ * injection for the block editor. This file covers the frontend.
+ */
+
+@font-face {
+	font-family: 'Exo 2';
+	src: url('Exo2-Variable.woff2') format('woff2');
+	font-weight: 400 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'DM Sans';
+	src: url('DMSans-Variable.woff2') format('woff2');
+	font-weight: 300 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'DM Mono';
+	src: url('DMMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Heebo';
+	src: url('Heebo-Variable.woff2') format('woff2');
+	font-weight: 300 800;
+	font-style: normal;
+	font-display: swap;
+}

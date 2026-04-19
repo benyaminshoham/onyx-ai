@@ -1,0 +1,27 @@
+.onyx-tag-badge {
+	display: inline-flex;
+	align-items: center;
+	border-radius: 100px;
+	padding: 5px 12px;
+	font-family: var(--wp--preset--font-family--dm-mono);
+	font-size: var(--wp--preset--font-size--xs);
+	font-weight: 400;
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+	line-height: 1;
+
+	&--mustard {
+		background: var(--wp--preset--color--mustard-dim);
+		color: var(--wp--preset--color--mustard-light);
+	}
+
+	&--teal {
+		background: rgba(0, 212, 170, 0.12);
+		color: var(--wp--preset--color--teal);
+	}
+
+	&--amber {
+		background: rgba(255, 183, 77, 0.12);
+		color: var(--wp--preset--color--amber);
+	}
+}

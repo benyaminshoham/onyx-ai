@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/pillars",
+	"version": "1.0.0",
+	"title": "Pillars Grid",
+	"category": "onyx-ai",
+	"description": "Icon grid showing up to 6 brand pillars with label and description.",
+	"keywords": [ "pillars", "grid", "icons", "features" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "object",
+				"properties": {
+					"icon":        { "type": "string" },
+					"label":       { "type": "string" },
+					"description": { "type": "string" }
+				}
+			}
+		},
+		"columns": { "type": "number", "default": 3, "enum": [ 2, 3, 4 ] }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:../style-pillars/index.css"
+}

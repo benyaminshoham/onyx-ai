@@ -1,0 +1,70 @@
+.onyx-faq-accordion {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--sm);
+
+	&__item {
+		background: var(--wp--preset--color--surface);
+		border: 1px solid var(--wp--preset--color--border);
+		border-radius: 8px;
+		overflow: hidden;
+
+		&[open] {
+			border-color: var(--wp--preset--color--mustard-dim);
+		}
+	}
+
+	&__question {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: var(--wp--preset--spacing--lg) var(--wp--preset--spacing--xl);
+		font-family: var(--wp--preset--font-family--heebo);
+		font-size: var(--wp--preset--font-size--md);
+		font-weight: 500;
+		color: var(--wp--preset--color--white);
+		cursor: pointer;
+		list-style: none;
+		transition: color 200ms;
+
+		&::-webkit-details-marker { display: none; }
+
+		&::after {
+			content: '+';
+			font-family: var(--wp--preset--font-family--exo-2);
+			font-size: 20px;
+			font-weight: 300;
+			color: var(--wp--preset--color--mustard);
+			flex-shrink: 0;
+			transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		details[open] &::after {
+			transform: rotate(45deg);
+		}
+
+		&:hover {
+			color: var(--wp--preset--color--mustard-light);
+		}
+	}
+
+	&__answer {
+		padding: 0 var(--wp--preset--spacing--xl) var(--wp--preset--spacing--lg);
+		font-family: var(--wp--preset--font-family--heebo);
+		font-size: var(--wp--preset--font-size--base);
+		font-weight: 300;
+		color: var(--wp--preset--color--silver);
+		line-height: 1.7;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.onyx-faq-accordion__item[open] .onyx-faq-accordion__answer {
+		animation: accordion-open 300ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	@keyframes accordion-open {
+		from { opacity: 0; transform: translateY(-8px); }
+		to   { opacity: 1; transform: translateY(0); }
+	}
+}

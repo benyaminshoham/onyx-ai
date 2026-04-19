@@ -1,0 +1,46 @@
+.onyx-pillars {
+	display: grid;
+	gap: var(--wp--preset--spacing--xl);
+
+	&--cols-2 { grid-template-columns: repeat(2, 1fr); }
+	&--cols-3 { grid-template-columns: repeat(3, 1fr); }
+	&--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr 1fr !important;
+	}
+
+	@media (max-width: 480px) {
+		grid-template-columns: 1fr !important;
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--sm);
+	}
+
+	&__icon {
+		font-family: var(--wp--preset--font-family--dm-mono);
+		font-size: 12px;
+		color: var(--wp--preset--color--teal);
+		letter-spacing: 0.05em;
+	}
+
+	&__label {
+		font-family: var(--wp--preset--font-family--exo-2);
+		font-size: var(--wp--preset--font-size--lg);
+		font-weight: 700;
+		color: var(--wp--preset--color--white);
+		margin: 0;
+	}
+
+	&__description {
+		font-family: var(--wp--preset--font-family--heebo);
+		font-size: var(--wp--preset--font-size--base);
+		font-weight: 300;
+		color: var(--wp--preset--color--silver);
+		line-height: 1.7;
+		margin: 0;
+	}
+}

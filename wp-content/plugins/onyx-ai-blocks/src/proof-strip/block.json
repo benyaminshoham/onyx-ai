@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/proof-strip",
+	"version": "1.0.0",
+	"title": "Proof Strip",
+	"category": "onyx-ai",
+	"description": "Social proof section: large number stats and short quote callouts.",
+	"keywords": [ "proof", "stats", "numbers", "social proof" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"stats": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "object",
+				"properties": {
+					"number": { "type": "string" },
+					"label":  { "type": "string" }
+				}
+			}
+		},
+		"quotes": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "object",
+				"properties": {
+					"quote":  { "type": "string" },
+					"author": { "type": "string" },
+					"role":   { "type": "string" }
+				}
+			}
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:../style-proof-strip/index.css"
+}

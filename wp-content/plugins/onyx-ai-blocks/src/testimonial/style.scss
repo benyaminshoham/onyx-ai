@@ -1,0 +1,56 @@
+.onyx-testimonial {
+	background: var(--wp--preset--color--surface);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: 12px;
+	padding: var(--wp--preset--spacing--xl);
+	margin: 0;
+
+	&--featured {
+		border-color: var(--wp--preset--color--mustard);
+		padding: var(--wp--preset--spacing--2xl);
+	}
+
+	&__quote {
+		font-family: var(--wp--preset--font-family--heebo);
+		font-size: var(--wp--preset--font-size--md);
+		font-weight: 300;
+		color: var(--wp--preset--color--white);
+		line-height: 1.7;
+		margin-block-end: var(--wp--preset--spacing--lg);
+	}
+
+	&--featured &__quote {
+		font-size: var(--wp--preset--font-size--xl);
+	}
+
+	&__footer {
+		display: flex;
+		align-items: center;
+		gap: var(--wp--preset--spacing--sm);
+	}
+
+	&__avatar {
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		object-fit: cover;
+	}
+
+	&__author {
+		font-family: var(--wp--preset--font-family--exo-2);
+		font-size: var(--wp--preset--font-size--sm);
+		font-weight: 600;
+		color: var(--wp--preset--color--white);
+	}
+
+	&__role {
+		font-family: var(--wp--preset--font-family--dm-mono);
+		font-size: var(--wp--preset--font-size--xs);
+		color: var(--wp--preset--color--silver-muted);
+		letter-spacing: 0.06em;
+
+		&::before {
+			content: '· ';
+		}
+	}
+}

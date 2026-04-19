@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/audience-fork",
+	"version": "1.0.0",
+	"title": "Audience Fork Card",
+	"category": "onyx-ai",
+	"description": "Single audience path card (dev / biz / org) with icon, headline, description, and link.",
+	"keywords": [ "audience", "fork", "card", "path" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"headline": { "type": "string", "default": "" },
+		"description": { "type": "string", "default": "" },
+		"linkLabel": { "type": "string", "default": "" },
+		"linkUrl": { "type": "string", "default": "" },
+		"audience": { "type": "string", "default": "dev", "enum": [ "dev", "biz", "org" ] },
+		"icon": { "type": "string", "default": "code" }
+	},
+	"supports": {
+		"html": false,
+		"color": false,
+		"spacing": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:../style-audience-fork/index.css"
+}

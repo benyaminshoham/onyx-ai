@@ -1,0 +1,87 @@
+.onyx-recorded-card {
+	background: var(--wp--preset--color--surface);
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: 12px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+	            border-color 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+	&:hover {
+		transform: translateY(-2px);
+		border-color: #4D4030;
+	}
+
+	&--featured {
+		border-color: var(--wp--preset--color--mustard);
+	}
+
+	&__thumbnail {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		display: block;
+	}
+
+	&__body {
+		padding: var(--wp--preset--spacing--xl);
+		display: flex;
+		flex-direction: column;
+		gap: var(--wp--preset--spacing--md);
+		flex: 1;
+	}
+
+	&__title {
+		font-family: var(--wp--preset--font-family--exo-2);
+		font-size: var(--wp--preset--font-size--xl);
+		font-weight: 700;
+		color: var(--wp--preset--color--white);
+		margin: 0;
+	}
+
+	&__meta {
+		display: flex;
+		gap: var(--wp--preset--spacing--md);
+		font-family: var(--wp--preset--font-family--dm-mono);
+		font-size: var(--wp--preset--font-size--xs);
+		color: var(--wp--preset--color--silver-muted);
+		letter-spacing: 0.06em;
+	}
+
+	&__description {
+		font-family: var(--wp--preset--font-family--heebo);
+		font-size: var(--wp--preset--font-size--base);
+		font-weight: 300;
+		color: var(--wp--preset--color--silver);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	&__price {
+		font-family: var(--wp--preset--font-family--exo-2);
+		font-size: var(--wp--preset--font-size--lg);
+		font-weight: 700;
+		color: var(--wp--preset--color--mustard-light);
+	}
+
+	&__cta {
+		display: inline-flex;
+		align-items: center;
+		padding: 10px 20px;
+		border-radius: 8px;
+		background: var(--wp--preset--color--mustard);
+		color: #ffffff;
+		font-family: var(--wp--preset--font-family--exo-2);
+		font-size: 13px;
+		font-weight: 600;
+		text-decoration: none;
+		margin-block-start: auto;
+		align-self: flex-start;
+		transition: opacity 200ms;
+
+		&:hover {
+			opacity: 0.88;
+		}
+	}
+}

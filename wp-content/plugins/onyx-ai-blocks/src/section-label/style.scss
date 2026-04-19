@@ -1,0 +1,14 @@
+.onyx-section-label {
+	display: flex;
+	align-items: center;
+	gap: 0;
+	font-family: var(--wp--preset--font-family--dm-mono);
+	font-size: var(--wp--preset--font-size--xs);
+	font-weight: 400;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--silver-muted);
+	padding-inline-start: 12px;
+	border-inline-start: 2px solid var(--wp--preset--color--mustard);
+	margin-block-end: var(--wp--preset--spacing--lg);
+}

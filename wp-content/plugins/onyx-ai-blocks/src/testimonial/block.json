@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "onyx-ai/testimonial",
+	"version": "1.0.0",
+	"title": "Testimonial",
+	"category": "onyx-ai",
+	"description": "Single testimonial card with quote, author, role, optional avatar, and layout variant.",
+	"keywords": [ "testimonial", "quote", "review" ],
+	"textdomain": "onyx-ai-blocks",
+	"attributes": {
+		"quote":     { "type": "string", "default": "" },
+		"author":    { "type": "string", "default": "" },
+		"role":      { "type": "string", "default": "" },
+		"avatarUrl": { "type": "string", "default": "" },
+		"layout":    { "type": "string", "default": "card", "enum": [ "card", "inline", "featured" ] }
+	},
+	"supports": {
+		"html": false,
+		"color": false
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:../style-testimonial/index.css"
+}
