@@ -325,6 +325,32 @@ a.onyx-cta-button--secondary:hover,
 #service,
 #about { background: #252018; }
 
+/* ── About section — spacing fix (--wp--preset--spacing--2xl undefined) ── */
+.onyx-about-teaser {
+	padding: 40px !important;
+	gap: 40px !important;
+}
+.onyx-about-teaser__content {
+	gap: 16px !important;
+}
+.wp-block-group:has(.onyx-about-teaser) {
+	padding-block: 64px !important;
+}
+
+/* ── Footer grid — 5 columns matching mockup ─────────── */
+footer.site-footer > .wp-block-group:first-child {
+	display: grid !important;
+	grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr !important;
+	gap: 32px !important;
+	align-items: start !important;
+}
+
+/* Newsletter section — gradient background ───────────── */
+.onyx-newsletter-section,
+.wp-block-group:has(.onyx-newsletter-optin--full-width) {
+	background: linear-gradient(180deg, #1A1814 0%, #252018 50%, #1A1814 100%) !important;
+}
+
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 960px) {
 	.svc-grid--2,
