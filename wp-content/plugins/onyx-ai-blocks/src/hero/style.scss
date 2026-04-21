@@ -26,14 +26,8 @@
 	&__inner {
 		position: relative;
 		z-index: 1;
-		max-width: 760px;
 		margin-inline: auto;
 		text-align: center;
-	}
-
-	&--audience &__inner {
-		text-align: center;
-		margin-inline: auto;
 	}
 
 	&__eyebrow {
@@ -61,9 +55,15 @@
 		font-size: var(--wp--preset--font-size--lg);
 		font-weight: 300;
 		color: var(--wp--preset--color--silver);
-		max-width: 560px;
+		max-width: 520px;
 		margin-block-end: var(--wp--preset--spacing--xl);
+		margin-inline: auto;
+		text-align: center;
 	}
+
+	// Headline accent colours (set on <span> inside the headline HTML)
+	.hero-accent      { color: #C8922A; }
+	.hero-accent-teal { color: #00D4AA; }
 
 	&__ctas {
 		display: flex;
