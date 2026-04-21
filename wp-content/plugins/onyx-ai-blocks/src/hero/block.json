@@ -16,6 +16,8 @@
 		"ctaPrimaryUrl": { "type": "string", "default": "" },
 		"ctaSecondaryLabel": { "type": "string", "default": "" },
 		"ctaSecondaryUrl": { "type": "string", "default": "" },
+		"sign": { "type": "string", "default": "" },
+		"tagline": { "type": "string", "default": "" },
 		"variant": { "type": "string", "default": "homepage", "enum": [ "homepage", "audience" ] },
 		"backgroundDecoration": { "type": "boolean", "default": true }
 	},
@@ -25,6 +27,7 @@
 		"color": false,
 		"spacing": false
 	},
+	"render": "file:./render.php",
 	"editorScript": "file:./index.js",
 	"style": "file:../style-hero/index.css"
 }

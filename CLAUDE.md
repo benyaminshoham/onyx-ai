@@ -17,3 +17,4 @@ Use these documents when relevant — don't load all of them for every task.
 | [docs/brand.md](docs/brand.md) | Any task involving colors, typography, spacing, UI components, logo, voice, or visual design |
 | [docs/onyx-ai-website-plan.md](docs/onyx-ai-website-plan.md) | Any task involving site structure, page layout, navigation, SEO strategy, or content planning |
 | [docs/wordpress-implementation-plan.md](docs/wordpress-implementation-plan.md) | Any task involving theme architecture, block development, plugin choices, page build order, or WordPress configuration |
+| [docs/gutenberg-block-rules.md](docs/gutenberg-block-rules.md) | **Required reading for every block build or modification** — static vs SSR blocks, render.php setup, block comment JSON rules, validation errors, `$wpdb->update()` vs `wp_update_post()` |

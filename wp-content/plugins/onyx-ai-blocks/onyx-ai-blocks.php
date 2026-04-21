@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ONYX_AI_BLOCKS_VERSION', '1.0.0' );
+define( 'ONYX_AI_BLOCKS_VERSION', '1.0.1' );
 define( 'ONYX_AI_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ONYX_AI_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
 

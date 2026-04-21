@@ -9,6 +9,7 @@ registerBlockType( metadata.name, {
 	edit( { attributes, setAttributes } ) {
 		const {
 			eyebrow, headline, subheading,
+			sign, tagline,
 			ctaPrimaryLabel, ctaPrimaryUrl,
 			ctaSecondaryLabel, ctaSecondaryUrl,
 			variant, backgroundDecoration,
@@ -36,6 +37,18 @@ registerBlockType( metadata.name, {
 							checked={ backgroundDecoration }
 							onChange={ ( val ) => setAttributes( { backgroundDecoration: val } ) }
 						/>
+						<TextControl
+							label={ __( 'Sign line (below headline)', 'onyx-ai-blocks' ) }
+							value={ sign }
+							onChange={ ( v ) => setAttributes( { sign: v } ) }
+							help={ __( 'Optional italic tagline shown between headline and subheading.', 'onyx-ai-blocks' ) }
+						/>
+						<TextControl
+							label={ __( 'Tagline (below CTAs)', 'onyx-ai-blocks' ) }
+							value={ tagline }
+							onChange={ ( v ) => setAttributes( { tagline: v } ) }
+							help={ __( 'Optional uppercase strip shown below the CTA buttons.', 'onyx-ai-blocks' ) }
+						/>
 					</PanelBody>
 					<PanelBody title={ __( 'CTAs', 'onyx-ai-blocks' ) } initialOpen={ false }>
 						<TextControl label={ __( 'Primary label', 'onyx-ai-blocks' ) } value={ ctaPrimaryLabel } onChange={ ( v ) => setAttributes( { ctaPrimaryLabel: v } ) } />
@@ -60,6 +73,7 @@ registerBlockType( metadata.name, {
 							onChange={ ( val ) => setAttributes( { headline: val } ) }
 							placeholder={ __( 'Hero headline…', 'onyx-ai-blocks' ) }
 						/>
+						{ sign && <p className="onyx-hero__sign">{ sign }</p> }
 						<RichText
 							tagName="p"
 							className="onyx-hero__subheading"
@@ -77,43 +91,14 @@ registerBlockType( metadata.name, {
 								</a>
 							) }
 						</div>
+						{ tagline && <p className="onyx-hero__tagline">{ tagline }</p> }
 					</div>
 				</section>
 			</>
 		);
 	},
 
-	save( { attributes } ) {
-		const {
-			eyebrow, headline, subheading,
-			ctaPrimaryLabel, ctaPrimaryUrl,
-			ctaSecondaryLabel, ctaSecondaryUrl,
-			variant, backgroundDecoration,
-		} = attributes;
-
-		const blockProps = useBlockProps.save( {
-			className: `onyx-hero onyx-hero--${ variant }${ backgroundDecoration ? ' onyx-hero--decorated' : '' }`,
-		} );
-
-		return (
-			<section { ...blockProps }>
-				{ backgroundDecoration && <div className="onyx-hero__orb" aria-hidden="true" /> }
-				<div className="onyx-hero__inner">
-					<p className="onyx-hero__eyebrow">{ eyebrow }</p>
-					<RichText.Content tagName="h1" className="onyx-hero__headline" value={ headline } />
-					<RichText.Content tagName="p" className="onyx-hero__subheading" value={ subheading } />
-					<div className="onyx-hero__ctas">
-						<a className="onyx-cta-button onyx-cta-button--primary" href={ ctaPrimaryUrl }>
-							{ ctaPrimaryLabel }
-						</a>
-						{ 'homepage' === variant && ctaSecondaryLabel && (
-							<a className="onyx-cta-button onyx-cta-button--secondary" href={ ctaSecondaryUrl }>
-								{ ctaSecondaryLabel }
-							</a>
-						) }
-					</div>
-				</div>
-			</section>
-		);
+	save() {
+		return null;
 	},
 } );

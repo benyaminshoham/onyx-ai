@@ -56,3 +56,18 @@ function onyx_ai_body_class( array $classes ): array {
 	return $classes;
 }
 add_filter( 'body_class', 'onyx_ai_body_class' );
+
+/**
+ * Enqueue theme overrides stylesheet.
+ *
+ * @since 1.0.0
+ */
+function onyx_ai_enqueue_styles() {
+	wp_enqueue_style(
+		'onyx-ai-overrides',
+		get_template_directory_uri() . '/assets/css/overrides.css',
+		[],
+		ONYX_AI_THEME_VERSION
+	);
+}
+add_action( 'wp_enqueue_scripts', 'onyx_ai_enqueue_styles' );
