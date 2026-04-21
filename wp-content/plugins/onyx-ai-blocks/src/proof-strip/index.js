@@ -62,29 +62,5 @@ registerBlockType( metadata.name, {
 		);
 	},
 
-	save( { attributes } ) {
-		const { stats, quotes } = attributes;
-		const blockProps = useBlockProps.save( { className: 'onyx-proof-strip' } );
-		return (
-			<div { ...blockProps }>
-				<div className="onyx-proof-strip__stats">
-					{ stats.map( ( s, i ) => (
-						<div key={ i } className="onyx-proof-strip__stat">
-							<span className="onyx-proof-strip__number">{ s.number }</span>
-							<span className="onyx-proof-strip__label">{ s.label }</span>
-						</div>
-					) ) }
-				</div>
-				{ quotes.length > 0 && (
-					<div className="onyx-proof-strip__quotes">
-						{ quotes.map( ( q, i ) => (
-							<p key={ i } className="onyx-proof-strip__quote">
-								"{ q.quote }" — <strong>{ q.author }</strong>{ q.role && `, ${ q.role }` }
-							</p>
-						) ) }
-					</div>
-				) }
-			</div>
-		);
-	},
+	save: () => null,
 } );

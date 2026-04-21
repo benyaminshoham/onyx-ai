@@ -37,20 +37,5 @@ registerBlockType( metadata.name, {
 		);
 	},
 
-	save( { attributes } ) {
-		const { quote, author, role, avatarUrl, layout } = attributes;
-		const blockProps = useBlockProps.save( {
-			className: `onyx-testimonial onyx-testimonial--${ layout }`,
-		} );
-		return (
-			<blockquote { ...blockProps }>
-				<p className="onyx-testimonial__quote">"{ quote }"</p>
-				<footer className="onyx-testimonial__footer">
-					{ avatarUrl && <img className="onyx-testimonial__avatar" src={ avatarUrl } alt={ author } width="40" height="40" loading="lazy" /> }
-					<span className="onyx-testimonial__author">{ author }</span>
-					{ role && <span className="onyx-testimonial__role">{ role }</span> }
-				</footer>
-			</blockquote>
-		);
-	},
+	save: () => null,
 } );

@@ -20,6 +20,7 @@
 		"html": false,
 		"align": [ "wide", "full" ]
 	},
+	"render": "file:./render.php",
 	"editorScript": "file:./index.js",
 	"style": "file:../style-about-teaser/index.css"
 }

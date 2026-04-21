@@ -47,24 +47,5 @@ registerBlockType( metadata.name, {
 		);
 	},
 
-	save( { attributes } ) {
-		const { icon, title, description, audienceTag, serviceType, format, nextDate, price, ctaLabel, ctaUrl, featured } = attributes;
-		const blockProps = useBlockProps.save( {
-			className: `onyx-service-card onyx-service-card--${ serviceType }${ featured ? ' onyx-service-card--featured' : '' }`,
-		} );
-		return (
-			<div { ...blockProps }>
-				<div className="onyx-service-card__header">
-					<span className="onyx-service-card__icon" aria-hidden="true">{ icon }</span>
-					{ audienceTag && <span className="onyx-tag-badge onyx-tag-badge--mustard">{ audienceTag }</span> }
-				</div>
-				<h3 className="onyx-service-card__title">{ title }</h3>
-				<p className="onyx-service-card__description">{ description }</p>
-				{ format && <span className="onyx-service-card__format">{ format }</span> }
-				{ 'group' === serviceType && nextDate && <span className="onyx-service-card__next-date">{ nextDate }</span> }
-				{ price && <span className="onyx-service-card__price">{ price }</span> }
-				<a className="onyx-service-card__cta" href={ ctaUrl }>{ ctaLabel }</a>
-			</div>
-		);
-	},
+	save: () => null,
 } );

@@ -21,6 +21,7 @@
 		"color": false,
 		"spacing": false
 	},
+	"render": "file:./render.php",
 	"editorScript": "file:./index.js",
 	"style": "file:../style-audience-fork/index.css"
 }

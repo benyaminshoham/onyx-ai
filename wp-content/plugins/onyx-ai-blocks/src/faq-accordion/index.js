@@ -59,18 +59,5 @@ registerBlockType( metadata.name, {
 		);
 	},
 
-	save( { attributes } ) {
-		const { items } = attributes;
-		const blockProps = useBlockProps.save( { className: 'onyx-faq-accordion' } );
-		return (
-			<div { ...blockProps }>
-				{ items.map( ( item, i ) => (
-					<details key={ i } className="onyx-faq-accordion__item">
-						<summary className="onyx-faq-accordion__question">{ item.question }</summary>
-						<div className="onyx-faq-accordion__answer">{ item.answer }</div>
-					</details>
-				) ) }
-			</div>
-		);
-	},
+	save: () => null,
 } );

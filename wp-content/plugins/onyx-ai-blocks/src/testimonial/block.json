@@ -19,6 +19,7 @@
 		"html": false,
 		"color": false
 	},
+	"render": "file:./render.php",
 	"editorScript": "file:./index.js",
 	"style": "file:../style-testimonial/index.css"
 }

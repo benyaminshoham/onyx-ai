@@ -51,24 +51,5 @@ registerBlockType( metadata.name, {
 		);
 	},
 
-	save( { attributes } ) {
-		const { photoUrl, photoAlt, bio, credibilityLine, linkLabel, linkUrl } = attributes;
-		const blockProps = useBlockProps.save( { className: 'onyx-about-teaser' } );
-		return (
-			<div { ...blockProps }>
-				{ photoUrl && (
-					<div className="onyx-about-teaser__photo-wrap">
-						<img className="onyx-about-teaser__photo" src={ photoUrl } alt={ photoAlt } loading="lazy" />
-					</div>
-				) }
-				<div className="onyx-about-teaser__content">
-					<p className="onyx-about-teaser__bio">{ bio }</p>
-					{ credibilityLine && (
-						<p className="onyx-about-teaser__credibility">{ credibilityLine }</p>
-					) }
-					<a className="onyx-about-teaser__link" href={ linkUrl }>{ linkLabel }</a>
-				</div>
-			</div>
-		);
-	},
+	save: () => null,
 } );

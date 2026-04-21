@@ -43,18 +43,5 @@ registerBlockType( metadata.name, {
 		);
 	},
 
-	save( { attributes } ) {
-		const { headline, description, linkLabel, linkUrl, audience, icon } = attributes;
-		const blockProps = useBlockProps.save( {
-			className: `onyx-audience-fork onyx-audience-fork--${ audience }`,
-		} );
-		return (
-			<div { ...blockProps }>
-				<div className="onyx-audience-fork__icon" aria-hidden="true">{ icon }</div>
-				<h3 className="onyx-audience-fork__headline">{ headline }</h3>
-				<p className="onyx-audience-fork__description">{ description }</p>
-				<a className="onyx-audience-fork__link" href={ linkUrl }>{ linkLabel }</a>
-			</div>
-		);
-	},
+	save: () => null,
 } );

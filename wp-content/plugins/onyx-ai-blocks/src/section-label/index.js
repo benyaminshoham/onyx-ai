@@ -35,15 +35,5 @@ registerBlockType( metadata.name, {
 		);
 	},
 
-	save( { attributes } ) {
-		const { number, label } = attributes;
-		const blockProps = useBlockProps.save( { className: 'onyx-section-label' } );
-		return (
-			<div { ...blockProps }>
-				<span className="onyx-section-label__number">{ number }</span>
-				<span className="onyx-section-label__sep"> — </span>
-				<span className="onyx-section-label__text">{ label }</span>
-			</div>
-		);
-	},
+	save: () => null,
 } );
