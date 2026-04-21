@@ -10,17 +10,20 @@
  * @var WP_Block $block      Block instance.
  */
 
+require_once dirname( __DIR__, 2 ) . '/includes/icon-helper.php';
+
 $headline    = isset( $attributes['headline'] )    ? $attributes['headline']    : '';
 $description = isset( $attributes['description'] ) ? $attributes['description'] : '';
 $link_label  = isset( $attributes['linkLabel'] )   ? $attributes['linkLabel']   : '';
 $link_url    = isset( $attributes['linkUrl'] )     ? $attributes['linkUrl']     : '';
 $audience    = isset( $attributes['audience'] )    ? $attributes['audience']    : 'dev';
-$icon        = isset( $attributes['icon'] )        ? $attributes['icon']        : 'code';
+$icon        = isset( $attributes['icon'] )        ? $attributes['icon']        : 'code-2';
 
+$icon_svg      = onyx_get_icon_svg( $icon, 20 );
 $wrapper_class = 'onyx-audience-fork onyx-audience-fork--' . sanitize_html_class( $audience );
 ?>
 <div <?php echo get_block_wrapper_attributes( [ 'class' => $wrapper_class ] ); ?>>
-	<div class="onyx-audience-fork__icon" aria-hidden="true"><?php echo esc_html( $icon ); ?></div>
+	<div class="onyx-audience-fork__icon" aria-hidden="true"><?php echo $icon_svg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-sanitised SVG ?></div>
 	<h3 class="onyx-audience-fork__headline"><?php echo esc_html( $headline ); ?></h3>
 	<p class="onyx-audience-fork__description"><?php echo esc_html( $description ); ?></p>
 	<a class="onyx-audience-fork__link" href="<?php echo esc_url( $link_url ); ?>"><?php echo esc_html( $link_label ); ?></a>
