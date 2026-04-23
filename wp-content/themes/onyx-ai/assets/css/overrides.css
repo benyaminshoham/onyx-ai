@@ -351,6 +351,55 @@ footer.site-footer > .wp-block-group:first-child {
 	background: linear-gradient(180deg, #1A1814 0%, #252018 50%, #1A1814 100%) !important;
 }
 
+/* ── Service card — tagline field ────────────────────── */
+.onyx-service-card__tagline {
+	font-family: var(--wp--preset--font-family--dm-mono, 'DM Mono', monospace);
+	font-size: 14px;
+	color: var(--onyx-electric);
+	letter-spacing: 0.04em;
+	margin: 0;
+}
+
+/* ── Hero — ensure bottom padding is rendered ────────── */
+.onyx-hero {
+	padding-block-end: clamp(48px, 8vw, 80px) !important;
+}
+
+/* ── CTA button block — center when used standalone ──── */
+.wp-block-onyx-ai-cta-button {
+	display: flex;
+	justify-content: center;
+}
+
+/* ── Hero audience — profile photo layout ────────────── */
+.onyx-hero--audience.onyx-hero--with-photo .onyx-hero__inner {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 48px;
+	align-items: center;
+	text-align: start;
+}
+.onyx-hero--audience.onyx-hero--with-photo .onyx-hero__ctas {
+	justify-content: flex-start;
+}
+.onyx-hero__photo {
+	flex-shrink: 0;
+}
+.onyx-hero__profile-img {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid var(--onyx-electric-dim);
+	display: block;
+}
+@media (max-width: 640px) {
+	.onyx-hero--audience.onyx-hero--with-photo .onyx-hero__inner {
+		grid-template-columns: 1fr;
+	}
+	.onyx-hero__photo { order: -1; margin-inline: auto; }
+}
+
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 960px) {
 	.svc-grid--2,

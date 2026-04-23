@@ -60,6 +60,18 @@
     "backgroundDecoration": {
       "type": "boolean",
       "default": true
+    },
+    "profileImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "profileImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "profileImageAlt": {
+      "type": "string",
+      "default": ""
     }
   },
   "supports": {

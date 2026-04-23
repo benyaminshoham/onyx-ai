@@ -19,7 +19,10 @@
 		"sign": { "type": "string", "default": "" },
 		"tagline": { "type": "string", "default": "" },
 		"variant": { "type": "string", "default": "homepage", "enum": [ "homepage", "audience" ] },
-		"backgroundDecoration": { "type": "boolean", "default": true }
+		"backgroundDecoration": { "type": "boolean", "default": true },
+		"profileImageId": { "type": "number", "default": 0 },
+		"profileImageUrl": { "type": "string", "default": "" },
+		"profileImageAlt": { "type": "string", "default": "" }
 	},
 	"supports": {
 		"html": false,

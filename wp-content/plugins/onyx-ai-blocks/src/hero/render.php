@@ -21,10 +21,15 @@ $cta_secondary_label = isset( $attributes['ctaSecondaryLabel'] )   ? $attributes
 $cta_secondary_url   = isset( $attributes['ctaSecondaryUrl'] )     ? $attributes['ctaSecondaryUrl']    : '';
 $variant             = isset( $attributes['variant'] )             ? $attributes['variant']            : 'homepage';
 $decoration          = ! empty( $attributes['backgroundDecoration'] );
+$profile_image_url   = isset( $attributes['profileImageUrl'] )     ? $attributes['profileImageUrl']    : '';
+$profile_image_alt   = isset( $attributes['profileImageAlt'] )     ? $attributes['profileImageAlt']    : '';
 
 $section_class = 'onyx-hero onyx-hero--' . sanitize_html_class( $variant );
 if ( $decoration ) {
 	$section_class .= ' onyx-hero--decorated';
+}
+if ( $profile_image_url && 'audience' === $variant ) {
+	$section_class .= ' onyx-hero--with-photo';
 }
 ?>
 <section <?php echo get_block_wrapper_attributes( [ 'class' => $section_class ] ); ?>>
@@ -32,32 +37,46 @@ if ( $decoration ) {
 		<div class="onyx-hero__orb" aria-hidden="true"></div>
 	<?php endif; ?>
 	<div class="onyx-hero__inner">
-		<?php if ( $eyebrow ) : ?>
-			<p class="onyx-hero__eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
-		<?php endif; ?>
-		<?php if ( $headline ) : ?>
-			<h1 class="onyx-hero__headline"><?php echo wp_kses_post( $headline ); ?></h1>
-		<?php endif; ?>
-		<?php if ( $sign ) : ?>
-			<p class="onyx-hero__sign"><?php echo esc_html( $sign ); ?></p>
-		<?php endif; ?>
-		<?php if ( $subheading ) : ?>
-			<p class="onyx-hero__subheading"><?php echo esc_html( $subheading ); ?></p>
-		<?php endif; ?>
-		<div class="onyx-hero__ctas">
-			<?php if ( $cta_primary_label ) : ?>
-				<a class="onyx-cta-button onyx-cta-button--primary" href="<?php echo esc_url( $cta_primary_url ); ?>">
-					<?php echo esc_html( $cta_primary_label ); ?>
-				</a>
+		<div class="onyx-hero__text">
+			<?php if ( $eyebrow ) : ?>
+				<p class="onyx-hero__eyebrow"><?php echo esc_html( $eyebrow ); ?></p>
 			<?php endif; ?>
-			<?php if ( 'homepage' === $variant && $cta_secondary_label ) : ?>
-				<a class="onyx-cta-button onyx-cta-button--secondary" href="<?php echo esc_url( $cta_secondary_url ); ?>">
-					<?php echo esc_html( $cta_secondary_label ); ?>
-				</a>
+			<?php if ( $headline ) : ?>
+				<h1 class="onyx-hero__headline"><?php echo wp_kses_post( $headline ); ?></h1>
+			<?php endif; ?>
+			<?php if ( $sign ) : ?>
+				<p class="onyx-hero__sign"><?php echo esc_html( $sign ); ?></p>
+			<?php endif; ?>
+			<?php if ( $subheading ) : ?>
+				<p class="onyx-hero__subheading"><?php echo esc_html( $subheading ); ?></p>
+			<?php endif; ?>
+			<div class="onyx-hero__ctas">
+				<?php if ( $cta_primary_label ) : ?>
+					<a class="onyx-cta-button onyx-cta-button--primary" href="<?php echo esc_url( $cta_primary_url ); ?>">
+						<?php echo esc_html( $cta_primary_label ); ?>
+					</a>
+				<?php endif; ?>
+				<?php if ( 'homepage' === $variant && $cta_secondary_label ) : ?>
+					<a class="onyx-cta-button onyx-cta-button--secondary" href="<?php echo esc_url( $cta_secondary_url ); ?>">
+						<?php echo esc_html( $cta_secondary_label ); ?>
+					</a>
+				<?php endif; ?>
+			</div>
+			<?php if ( $tagline ) : ?>
+				<p class="onyx-hero__tagline"><?php echo esc_html( $tagline ); ?></p>
 			<?php endif; ?>
 		</div>
-		<?php if ( $tagline ) : ?>
-			<p class="onyx-hero__tagline"><?php echo esc_html( $tagline ); ?></p>
+		<?php if ( $profile_image_url && 'audience' === $variant ) : ?>
+			<div class="onyx-hero__photo">
+				<img
+					class="onyx-hero__profile-img"
+					src="<?php echo esc_url( $profile_image_url ); ?>"
+					alt="<?php echo esc_attr( $profile_image_alt ); ?>"
+					width="200"
+					height="200"
+					loading="eager"
+				/>
+			</div>
 		<?php endif; ?>
 	</div>
 </section>

@@ -11,6 +11,7 @@
 	"attributes": {
 		"icon":         { "type": "string", "default": "zap" },
 		"title":        { "type": "string", "default": "" },
+		"tagline":      { "type": "string", "default": "" },
 		"description":  { "type": "string", "default": "" },
 		"audienceTag":  { "type": "string", "default": "" },
 		"serviceType":  { "type": "string", "default": "group", "enum": [ "group", "personal", "organizational" ] },

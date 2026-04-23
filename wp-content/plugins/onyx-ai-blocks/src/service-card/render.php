@@ -12,6 +12,7 @@
 
 $icon         = isset( $attributes['icon'] )        ? $attributes['icon']        : 'zap';
 $title        = isset( $attributes['title'] )       ? $attributes['title']       : '';
+$tagline      = isset( $attributes['tagline'] )     ? $attributes['tagline']     : '';
 $description  = isset( $attributes['description'] ) ? $attributes['description'] : '';
 $audience_tag = isset( $attributes['audienceTag'] ) ? $attributes['audienceTag'] : '';
 $service_type = isset( $attributes['serviceType'] ) ? $attributes['serviceType'] : 'group';
@@ -22,16 +23,21 @@ $cta_label    = isset( $attributes['ctaLabel'] )    ? $attributes['ctaLabel']   
 $cta_url      = isset( $attributes['ctaUrl'] )      ? $attributes['ctaUrl']      : '';
 $featured     = ! empty( $attributes['featured'] );
 
+require_once ONYX_AI_BLOCKS_DIR . 'includes/icon-helper.php';
+
 $wrapper_class = 'onyx-service-card onyx-service-card--' . sanitize_html_class( $service_type ) . ( $featured ? ' onyx-service-card--featured' : '' );
 ?>
 <div <?php echo get_block_wrapper_attributes( [ 'class' => $wrapper_class ] ); ?>>
 	<div class="onyx-service-card__header">
-		<span class="onyx-service-card__icon" aria-hidden="true"><?php echo esc_html( $icon ); ?></span>
+		<span class="onyx-service-card__icon" aria-hidden="true"><?php echo onyx_get_icon_svg( $icon, 20 ); ?></span>
 		<?php if ( $audience_tag ) : ?>
 			<span class="onyx-tag-badge onyx-tag-badge--mustard"><?php echo esc_html( $audience_tag ); ?></span>
 		<?php endif; ?>
 	</div>
 	<h3 class="onyx-service-card__title"><?php echo esc_html( $title ); ?></h3>
+	<?php if ( $tagline ) : ?>
+		<p class="onyx-service-card__tagline"><?php echo esc_html( $tagline ); ?></p>
+	<?php endif; ?>
 	<p class="onyx-service-card__description"><?php echo esc_html( $description ); ?></p>
 	<?php if ( $format ) : ?>
 		<span class="onyx-service-card__format"><?php echo esc_html( $format ); ?></span>
