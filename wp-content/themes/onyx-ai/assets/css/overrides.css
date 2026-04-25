@@ -530,11 +530,6 @@ footer.site-footer > .wp-block-group:first-child {
 	margin-block-end: 1.2em;
 }
 .wp-block-post-content li { margin-block-end: 0.4em; }
-.wp-block-post-content a {
-	color: var(--onyx-electric-light);
-	text-decoration: underline;
-	text-decoration-color: var(--onyx-electric-dim);
-}
 .wp-block-post-content a:hover { color: var(--onyx-white); }
 
 /* ── Responsive ──────────────────────────────────────── */
