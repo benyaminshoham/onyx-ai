@@ -1,7 +1,12 @@
+.wp-block-onyx-ai-cta-button {
+	max-width: 300px !important;
+}
+
 .onyx-cta-button {
 	display: inline-flex;
 
 	a {
+		width: 100%;
 		display: inline-flex;
 		align-items: center;
 		gap: 6px;
