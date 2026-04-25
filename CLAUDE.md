@@ -27,3 +27,4 @@ Use these documents when relevant — don't load all of them for every task.
 | [docs/onyx-ai-website-plan.md](docs/onyx-ai-website-plan.md) | Any task involving site structure, page layout, navigation, SEO strategy, or content planning |
 | [docs/wordpress-implementation-plan.md](docs/wordpress-implementation-plan.md) | Any task involving theme architecture, block development, plugin choices, page build order, or WordPress configuration |
 | [docs/gutenberg-block-rules.md](docs/gutenberg-block-rules.md) | **Required reading for every block build or modification** — static vs SSR blocks, render.php setup, block comment JSON rules, validation errors, `$wpdb->update()` vs `wp_update_post()` |
+| [docs/deploy.md](docs/deploy.md) | Any deployment task — SSH credentials, packaging theme/plugin, DB export/import, production server details |
