@@ -11,7 +11,9 @@
  */
 
 $title        = isset( $attributes['title'] )        ? $attributes['title']        : '';
-$audience_tag = isset( $attributes['audienceTag'] )  ? $attributes['audienceTag']  : '';
+$audience_tag_raw = isset( $attributes['audienceTag'] ) ? $attributes['audienceTag'] : '';
+$audience_tag_labels = [ 'dev' => 'מפתחים', 'biz' => 'בעלי עסקים', 'org' => 'ארגונים' ];
+$audience_tag = $audience_tag_labels[ $audience_tag_raw ] ?? $audience_tag_raw;
 $description  = isset( $attributes['description'] )  ? $attributes['description']  : '';
 $price        = isset( $attributes['price'] )        ? $attributes['price']        : '';
 $duration     = isset( $attributes['duration'] )     ? $attributes['duration']     : '';
