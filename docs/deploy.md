@@ -83,6 +83,18 @@ bash dist/<version>/deploy.sh
 
 The script prompts for the SSH password on first run and caches it in `/tmp/ssh_pass` for the session.
 
+### Tag the release in git
+
+After a successful deploy, tag the commit and push the tag:
+
+```bash
+VERSION="1.0.x"
+git tag "v${VERSION}" -m "Release v${VERSION}"
+git push origin "v${VERSION}"
+```
+
+Tags are listed at `https://github.com/benyaminshoham/onyx-ai/tags`.
+
 ---
 
 ## Deployment Process (code only)

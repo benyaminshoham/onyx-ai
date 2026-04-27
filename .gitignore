@@ -32,6 +32,9 @@ wp-content/plugins/akismet/
 wp-content/plugins/hello.php
 wp-content/themes/twenty*/
 
+# Release packages — built locally, deployed via deploy.sh
+dist/
+
 # Node — never commit dependencies
 node_modules/
 wp-content/plugins/onyx-ai-blocks/node_modules/
