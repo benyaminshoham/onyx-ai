@@ -34,6 +34,57 @@ The production database contains live user accounts, admin credentials, and sett
 
 ---
 
+## Releasing a version
+
+Each release lives in `dist/<version>/` and contains:
+
+| File | Purpose |
+|---|---|
+| `onyx-ai-theme-<version>.zip` | Production-ready theme package |
+| `onyx-ai-blocks-<version>.zip` | Production-ready plugin package (no node_modules/src) |
+| `deploy.sh` | Self-contained deploy script for this version |
+| `RELEASE-NOTES.md` | Changelog and migration notes |
+
+### To cut a new release
+
+```bash
+VERSION="1.0.x"
+mkdir -p dist/$VERSION
+
+# 1. Build assets
+cd wp-content/plugins/onyx-ai-blocks && npm run build && cd -
+
+# 2. Package theme
+cd wp-content/themes
+zip -r ../../dist/$VERSION/onyx-ai-theme-${VERSION}.zip \
+  onyx-ai --exclude "*.DS_Store" --exclude "__MACOSX*"
+cd -
+
+# 3. Package plugin (strip dev files)
+cd wp-content/plugins
+zip -r ../../dist/$VERSION/onyx-ai-blocks-${VERSION}.zip \
+  onyx-ai-blocks \
+  --exclude "*.DS_Store" --exclude "__MACOSX*" \
+  --exclude "onyx-ai-blocks/node_modules/*" \
+  --exclude "onyx-ai-blocks/src/*" \
+  --exclude "onyx-ai-blocks/package.json" \
+  --exclude "onyx-ai-blocks/package-lock.json" \
+  --exclude "onyx-ai-blocks/webpack.config.js"
+cd -
+
+# 4. Copy & update deploy.sh and RELEASE-NOTES.md from previous version, then edit
+```
+
+### To deploy a release
+
+```bash
+bash dist/<version>/deploy.sh
+```
+
+The script prompts for the SSH password on first run and caches it in `/tmp/ssh_pass` for the session.
+
+---
+
 ## Deployment Process (code only)
 
 ### What to deploy
