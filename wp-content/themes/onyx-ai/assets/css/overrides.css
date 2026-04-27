@@ -1,5 +1,9 @@
 /* ─── Onyx AI — Theme overrides & mockup-match styles ─── */
 
+/* ── Prevent horizontal scroll on all viewports ─────── */
+.wp-site-blocks { overflow-x: clip; }
+img, video, iframe, svg { max-width: 100%; }
+
 /* ── Variables (mirror mockup) ───────────────────────── */
 :root {
 	--onyx-surface:       #2E2820;
@@ -548,6 +552,112 @@ footer.site-footer > .wp-block-group:first-child {
 .wp-block-post-content li { margin-block-end: 0.4em; }
 .wp-block-post-content a:hover { color: var(--onyx-white); }
 
+/* ── Mobile navigation — hamburger button ────────────── */
+.wp-block-navigation__responsive-container-open {
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	background: transparent;
+	border: 0.5px solid var(--onyx-border);
+	border-radius: 8px;
+	color: var(--onyx-silver);
+	cursor: pointer;
+	transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.wp-block-navigation__responsive-container-open:hover {
+	color: var(--onyx-white);
+	border-color: var(--onyx-border-hover);
+}
+.wp-block-navigation__responsive-container-open svg {
+	fill: currentColor;
+	width: 20px;
+	height: 20px;
+}
+
+/* ── Mobile navigation — full-screen overlay ─────────── */
+.wp-block-navigation__responsive-container.is-menu-open {
+	position: fixed !important;
+	inset: 0 !important;
+	z-index: 10000 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	background: #1A1814 !important;
+	padding: 20px 24px 40px !important;
+	overflow-y: auto !important;
+}
+
+/* Header row inside overlay: logo area height so close button aligns */
+.wp-block-navigation__responsive-container.is-menu-open
+	.wp-block-navigation__responsive-container-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+/* Close button */
+.wp-block-navigation__responsive-container-close {
+	align-self: flex-end;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	border: 0.5px solid var(--onyx-border);
+	border-radius: 8px;
+	color: var(--onyx-silver);
+	cursor: pointer;
+	transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+	margin-block-end: 8px;
+}
+.wp-block-navigation__responsive-container-close:hover {
+	color: var(--onyx-white);
+	border-color: var(--onyx-border-hover);
+}
+.wp-block-navigation__responsive-container-close svg {
+	fill: currentColor;
+	width: 20px;
+	height: 20px;
+}
+
+/* Nav items inside overlay */
+.wp-block-navigation__responsive-container.is-menu-open
+	.wp-block-navigation__container {
+	flex-direction: column !important;
+	gap: 0 !important;
+	width: 100%;
+}
+.wp-block-navigation__responsive-container.is-menu-open
+	.wp-block-navigation-item {
+	border-block-end: 0.5px solid var(--onyx-border);
+}
+.wp-block-navigation__responsive-container.is-menu-open
+	.wp-block-navigation-item:first-child {
+	border-block-start: 0.5px solid var(--onyx-border);
+}
+.wp-block-navigation__responsive-container.is-menu-open
+	.wp-block-navigation-item a {
+	color: var(--onyx-silver) !important;
+	font-family: var(--wp--preset--font-family--exo-2) !important;
+	font-size: 18px !important;
+	font-weight: 500 !important;
+	letter-spacing: 0.01em !important;
+	padding-block: 18px !important;
+	padding-inline: 0 !important;
+	display: block !important;
+	text-decoration: none !important;
+	transition: color 0.2s var(--ease);
+}
+.wp-block-navigation__responsive-container.is-menu-open
+	.wp-block-navigation-item a:hover {
+	color: var(--onyx-white) !important;
+}
+
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 960px) {
 	.svc-grid--2,
@@ -559,6 +669,34 @@ footer.site-footer > .wp-block-group:first-child {
 		grid-template-columns: repeat(2, 1fr) !important;
 	}
 }
+
+/* Show hamburger, hide inline nav at ≤900px */
+@media (max-width: 900px) {
+	.site-header .wp-block-navigation__responsive-container-open { display: flex !important; }
+	.site-header .wp-block-navigation__responsive-container:not(.is-menu-open) { display: none !important; }
+}
+/* Hide hamburger on desktop */
+@media (min-width: 901px) {
+	.site-header .wp-block-navigation__responsive-container-open { display: none !important; }
+}
+
+@media (max-width: 768px) {
+	/* Footer: 2-column grid */
+	footer.site-footer > .wp-block-group:first-child {
+		grid-template-columns: 1fr 1fr !important;
+	}
+	/* About teaser — reduce padding */
+	.onyx-about-teaser {
+		padding: 24px !important;
+		gap: 24px !important;
+	}
+	.wp-block-group:has(.onyx-about-teaser) {
+		padding-block: 40px !important;
+	}
+	/* Service spotlight — reduce padding */
+	.svc-spotlight { padding: 24px !important; }
+}
+
 @media (max-width: 600px) {
 	.svc-grid--2,
 	.svc-grid--3,
@@ -566,4 +704,20 @@ footer.site-footer > .wp-block-group:first-child {
 	.wp-block-post-template.is-layout-grid {
 		grid-template-columns: 1fr !important;
 	}
+}
+
+@media (max-width: 480px) {
+	/* Footer: single column */
+	footer.site-footer > .wp-block-group:first-child {
+		grid-template-columns: 1fr !important;
+	}
+	/* Hide header CTA button — too cramped alongside hamburger */
+	.site-header .wp-block-buttons { display: none !important; }
+	/* Newsletter form: stack input + button vertically */
+	.onyx-newsletter-optin__field-row { flex-direction: column; }
+	.onyx-newsletter-optin__button { width: 100%; }
+	/* Code blocks: contain horizontal overflow without expanding the page */
+	.wp-block-post-content pre.wp-block-code { overflow-x: auto; max-width: 100%; }
+	/* Tables: scroll horizontally within their container */
+	.wp-block-post-content .wp-block-table { overflow-x: auto; display: block; }
 }

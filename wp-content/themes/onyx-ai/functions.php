@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ONYX_AI_THEME_VERSION', '1.0.2' );
+define( 'ONYX_AI_THEME_VERSION', '1.0.3' );
 
 /**
  * Theme setup — declare supported features.

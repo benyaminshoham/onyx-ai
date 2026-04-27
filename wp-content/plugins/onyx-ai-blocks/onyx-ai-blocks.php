@@ -3,7 +3,7 @@
  * Plugin Name:  Onyx AI Blocks
  * Plugin URI:   https://onyx-ai.com
  * Description:  Custom Gutenberg blocks, fonts, and icons for the Onyx AI website.
- * Version:      1.0.0
+ * Version:      1.0.3
  * Author:       Benyamin Shoham
  * Author URI:   https://onyx-ai.com
  * License:      GPL-2.0-or-later
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ONYX_AI_BLOCKS_VERSION', '1.0.1' );
+define( 'ONYX_AI_BLOCKS_VERSION', '1.0.3' );
 define( 'ONYX_AI_BLOCKS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ONYX_AI_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
 
