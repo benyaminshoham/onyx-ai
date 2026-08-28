@@ -38,3 +38,11 @@ dist/
 # Node — never commit dependencies
 node_modules/
 wp-content/plugins/onyx-ai-blocks/node_modules/
+
+# Personal/business collateral — not part of the site codebase
+Benyamin_Shoham_AI_Architecture_Capabilities.pdf
+Benyamin_Shoham_AI_Solutions_Architect_CV.pdf
+article-28-draft.html
+facebook-lead-groups.xlsx
+onyx_ai_dev_project_leads.xlsx
+onyx_ai_facebook_leads.xlsx
