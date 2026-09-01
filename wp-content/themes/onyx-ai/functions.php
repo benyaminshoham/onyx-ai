@@ -10,7 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ONYX_AI_THEME_VERSION', '1.0.3' );
+define( 'ONYX_AI_THEME_VERSION', '1.0.4' );
+
+require get_template_directory() . '/inc/seo.php';
 
 /**
  * Theme setup — declare supported features.
