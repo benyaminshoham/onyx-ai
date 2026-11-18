@@ -28,6 +28,8 @@ Use these documents when relevant — don't load all of them for every task.
 | [docs/wordpress-implementation-plan.md](docs/wordpress-implementation-plan.md) | Any task involving theme architecture, block development, plugin choices, page build order, or WordPress configuration |
 | [docs/gutenberg-block-rules.md](docs/gutenberg-block-rules.md) | **Required reading for every block build or modification** — static vs SSR blocks, render.php setup, block comment JSON rules, validation errors, `$wpdb->update()` vs `wp_update_post()` |
 | [docs/deploy.md](docs/deploy.md) | Any deployment task — SSH credentials, packaging theme/plugin, DB export/import, production server details |
+| [docs/sales-process.md](docs/sales-process.md) | Any sales/business-development task — lead sourcing, scoring, outreach templates and cadence, CRM structure, pricing for paid scoping, 30-day launch plan, LinkedIn post |
+| [docs/sales-crm-setup.md](docs/sales-crm-setup.md) | Working with the sales CRM — Notion database URLs/IDs and schema, Linear project, labels and task conventions |
 
 ---
 

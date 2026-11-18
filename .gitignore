@@ -46,3 +46,8 @@ article-28-draft.html
 facebook-lead-groups.xlsx
 onyx_ai_dev_project_leads.xlsx
 onyx_ai_facebook_leads.xlsx
+
+# Sales / CRM working docs: contain contact details, pricing and leads. Keep local.
+docs/sales-*.md
+docs/outreach-drafts-*.md
+docs/brief-*.md
